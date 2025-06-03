@@ -955,6 +955,10 @@ a.logo:active {
 }
 
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 20px;
+    }
+
     .nav-links {
         display: none;
     }
@@ -963,178 +967,124 @@ a.logo:active {
         display: block;
     }
 
-    .hero h1 {
+    .hero-content {
+        padding: 0 20px;
+        text-align: center;
+    }
+
+    .hero-content h1 {
         font-size: 2.5rem;
     }
 
-    .typing-text {
-        font-size: 1.4rem;
-        min-width: 300px;
-        height: 2rem;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .btn {
-        width: 100%;
-        max-width: 250px;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .about-content {
-        gap: 40px;
-        max-width: 90%;
-    }
-    
-    .about-image {
-        max-width: 280px;
-    }
-
-    .about-image img {
-        border-radius: 20px;
-        border: 3px solid rgba(240, 90, 40, 0.3);
-        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-    }
-
-    .about-text {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-    
-    .about-text p {
-        margin-bottom: 18px;
-    }
-    
-    .about-text p:first-child {
+    .hero-content p {
         font-size: 1.1rem;
     }
 
-    .skill-container {
-        gap: 20px;
+    .about {
+        padding: 60px 20px;
     }
 
-    .skill {
-        width: 120px;
+    .about-text {
+        padding: 0 20px;
     }
 
-    .circle {
-        width: 100px;
-        height: 100px;
+    .about-text p {
+        font-size: 1rem;
+        text-align: center;
     }
 
-    .inner-circle {
-        width: 70px;
-        height: 70px;
-    }
-
-    .project-grid {
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    .contact-container {
+        padding: 0 20px;
     }
 
     .contact-form {
-        padding: 20px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        padding: 10px;
-    }
-
-    .experience-item {
-        padding: 20px;
-        transform: translateY(30px);
-    }
-
-    .experience-item.visible {
-        transform: translateY(0);
-    }
-
-    .experience-header h3 {
-        font-size: 1.2rem;
-    }
-
-    .about-text {
-        font-size: 1rem;
-        line-height: 1.7;
-    }
-    
-    .about-text p {
-        margin-bottom: 18px;
-    }
-    
-    .about-text p:first-child {
-        font-size: 1.1rem;
-    }
-}
-
-@media (max-width: 576px) {
-    .hero h1 {
-        font-size: 2rem;
-    }
-
-    .typing-text {
-        font-size: 1.2rem;
-    }
-
-    .section-title {
-        font-size: 1.8rem;
-    }
-
-    .skill-container {
-        gap: 15px;
-    }
-
-    .skill {
-        width: 100px;
-    }
-
-    .circle {
-        width: 90px;
-        height: 90px;
-    }
-
-    .inner-circle {
-        width: 60px;
-        height: 60px;
-    }
-
-    .project-filters {
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .filter-btn {
         width: 100%;
-        max-width: 200px;
+        padding: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+    }
+
+    .contact-info {
+        width: 100%;
+        margin-top: 30px;
+    }
+
+    .contact-info-item {
+        text-align: center;
+    }
+
+    .contact-info-item i {
+        margin-bottom: 10px;
     }
 
     .project-card {
-        margin: 0 auto;
-        max-width: 320px;
+        width: 100%;
+        margin: 10px 0;
     }
 
-    .contact-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
+    .experience-item {
+        width: 100%;
+        margin: 10px 0;
     }
 
-    .social-links {
-        gap: 15px;
+    .skills-container {
+        padding: 0 20px;
     }
 
-    .scroll-top {
-        width: 40px;
-        height: 40px;
-        bottom: 20px;
+    .skill {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .category-btn {
+        width: 100%;
+        margin: 5px 0;
+    }
+
+    .category-section {
+        padding: 0 20px;
+    }
+
+    .mobile-nav {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .mobile-nav a {
+        font-size: 1.2rem;
+        padding: 15px 0;
+    }
+
+    .close-menu {
+        top: 20px;
         right: 20px;
+    }
+}
+
+/* Additional fixes for very small screens */
+@media screen and (max-width: 480px) {
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .about-text p {
+        font-size: 0.95rem;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        font-size: 0.95rem;
+    }
+
+    .contact-info-item {
+        font-size: 0.95rem;
     }
 }
 

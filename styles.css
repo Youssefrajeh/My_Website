@@ -292,9 +292,15 @@ a.logo:active {
     display: flex;
     gap: 20px;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
 }
 
 .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
     padding: 12px 30px;
     border-radius: 30px;
     text-decoration: none;
@@ -514,12 +520,16 @@ a.logo:active {
 .project-filters {
     display: flex;
     justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
     gap: 15px;
     margin-bottom: 40px;
-    flex-wrap: wrap;
 }
 
 .filter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 8px 20px;
     border: none;
     background: rgba(255, 255, 255, 0.1);
@@ -693,6 +703,12 @@ a.logo:active {
 }
 
 .contact-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -703,12 +719,17 @@ a.logo:active {
 }
 
 .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     margin-bottom: 20px;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
+    text-align: center;
     padding: 15px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
@@ -729,6 +750,10 @@ a.logo:active {
 }
 
 .submit-btn {
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background: var(--primary-color);
     color: var(--white);
     border: none;
@@ -748,17 +773,24 @@ a.logo:active {
 .contact-info {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .contact-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 15px;
+    text-align: center;
+    gap: 10px;
     color: var(--text-light);
 }
 
 .contact-item i {
+    margin-bottom: 10px;
     font-size: 1.5rem;
     color: var(--primary-color);
 }
@@ -1062,6 +1094,52 @@ a.logo:active {
         top: 20px;
         right: 20px;
     }
+
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        text-align: center;
+    }
+
+    .submit-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .contact-info {
+        align-items: center;
+    }
+
+    .contact-item {
+        text-align: center;
+    }
+
+    .project-filters {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .filter-btn {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .experience-item {
+        text-align: center;
+    }
 }
 
 /* Additional fixes for very small screens */
@@ -1139,14 +1217,17 @@ a.logo:active {
 }
 
 .experience-container {
-    max-width: 1000px;
-    margin: 0 auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .experience-item {
+    width: 100%;
+    text-align: center;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -1263,28 +1344,26 @@ a.logo:active {
 }
 
 .experience-content ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     list-style: none;
     padding: 0;
     margin-bottom: 20px;
 }
 
 .experience-content li {
+    text-align: center;
+    padding-left: 0;
     color: var(--text-light);
     margin-bottom: 12px;
-    padding-left: 20px;
     position: relative;
     line-height: 1.6;
     transition: all 0.3s ease;
 }
 
 .experience-content li::before {
-    content: '▶';
-    position: absolute;
-    left: 0;
-    color: var(--primary-color);
-    font-size: 0.8rem;
-    top: 2px;
-    transition: all 0.3s ease;
+    display: none;
 }
 
 .experience-item:hover .experience-content li {
@@ -1298,6 +1377,7 @@ a.logo:active {
 }
 
 .experience-tech {
+    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;

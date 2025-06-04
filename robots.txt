@@ -1,0 +1,21 @@
+User-agent: *
+Allow: /
+
+# Sitemap location
+Sitemap: https://youssefrajeh.github.io/MyWebsite/sitemap.xml
+
+# Crawl-delay for polite crawling
+Crawl-delay: 1
+
+# Block access to certain files
+Disallow: /node_modules/
+Disallow: /.git/
+Disallow: /package.json
+Disallow: /package-lock.json
+
+# Allow all important resources
+Allow: /styles.css
+Allow: /script.js
+Allow: /images/
+Allow: /videos/
+Allow: /*.pdf 

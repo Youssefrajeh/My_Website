@@ -27,6 +27,14 @@ body {
     color: var(--text-color);
     background-color: var(--dark-color);
     overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+}
+
+html {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
 }
 
 /* Preloader */
@@ -1020,7 +1028,9 @@ a.logo:active {
 
 @media (max-width: 768px) {
     .nav-container {
-        padding: 0 20px;
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100vw;
     }
 
     .nav-links {
@@ -1032,59 +1042,94 @@ a.logo:active {
     }
 
     .hero-content {
-        padding: 0 20px;
+        padding: 0 15px;
         text-align: center;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .hero-content h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
         line-height: 1.2;
+        text-align: center;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .hero-content p {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .typing-text {
+        font-size: 1.4rem;
+        min-width: auto;
+        max-width: 100%;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .about {
-        padding: 60px 20px;
+        padding: 60px 15px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .about-text {
-        padding: 0 20px;
+        padding: 0 15px;
         max-width: 100%;
+        width: 100%;
+        text-align: center;
     }
 
     .about-text p {
         font-size: 1rem;
-        text-align: left;
-        text-align-last: left;
+        text-align: center;
+        text-align-last: center;
         line-height: 1.7;
         margin-bottom: 1.5rem;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+
+    .cv-button {
+        text-align: center;
+        width: 100%;
+        margin-top: 25px;
     }
 
     .contact-container {
         grid-template-columns: 1fr;
         gap: 30px;
-        padding: 0 20px;
+        padding: 0 15px;
         max-width: 100%;
+        width: 100%;
+        box-sizing: border-box;
     }
 
     .contact-form {
         width: 100%;
-        padding: 25px 20px;
+        max-width: 100%;
+        padding: 25px 15px;
         margin: 0;
+        box-sizing: border-box;
     }
 
     .form-group {
         margin-bottom: 18px;
+        width: 100%;
     }
 
     .form-group input,
     .form-group textarea {
         width: 100%;
+        max-width: 100%;
         padding: 12px 15px;
         font-size: 0.95rem;
         text-align: left;
+        box-sizing: border-box;
     }
 
     .form-group input::placeholder,
@@ -1097,17 +1142,21 @@ a.logo:active {
         max-width: 250px;
         margin: 20px auto 0;
         padding: 14px 20px;
+        display: block;
     }
 
     .contact-info {
         width: 100%;
         margin: 0;
         gap: 25px;
+        max-width: 100%;
     }
 
     .contact-item {
         text-align: center;
         width: 100%;
+        max-width: 100%;
+        word-wrap: break-word;
     }
 
     .contact-item i {
@@ -1117,22 +1166,30 @@ a.logo:active {
 
     .contact-item p {
         font-size: 0.95rem;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .project-grid {
         grid-template-columns: 1fr;
         gap: 20px;
-        padding: 0 20px;
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .project-card {
         width: 100%;
+        max-width: 100%;
         margin: 0;
+        box-sizing: border-box;
     }
 
     .project-content {
-        padding: 20px;
-        text-align: left;
+        padding: 20px 15px;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .project-content h3 {
@@ -1142,21 +1199,31 @@ a.logo:active {
     }
 
     .project-content p {
-        text-align: left;
+        text-align: center;
         line-height: 1.6;
         font-size: 0.95rem;
+        word-wrap: break-word;
+    }
+
+    .project-tech {
+        justify-content: center;
+        flex-wrap: wrap;
     }
 
     .experience-container {
         max-width: 100%;
-        padding: 0 20px;
+        width: 100%;
+        padding: 0 15px;
         gap: 25px;
+        box-sizing: border-box;
     }
 
     .experience-item {
         width: 100%;
+        max-width: 100%;
         margin: 0;
-        padding: 20px;
+        padding: 20px 15px;
+        box-sizing: border-box;
     }
 
     .experience-header {
@@ -1167,6 +1234,8 @@ a.logo:active {
     .experience-header h3 {
         font-size: 1.2rem;
         line-height: 1.3;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .company {
@@ -1185,6 +1254,8 @@ a.logo:active {
         text-align: left;
         padding-left: 15px;
         margin-bottom: 10px;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .experience-content li::before {
@@ -1194,6 +1265,7 @@ a.logo:active {
     .experience-tech {
         justify-content: center;
         gap: 6px;
+        flex-wrap: wrap;
     }
 
     .experience-tech span {
@@ -1202,43 +1274,57 @@ a.logo:active {
     }
 
     .skills {
-        padding: 60px 20px;
+        padding: 60px 15px;
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
     }
 
     .skill-container {
-        gap: 20px;
+        gap: 15px;
         padding: 0 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 100%;
+        max-width: 100%;
     }
 
     .skill {
-        width: 120px;
-        margin: 10px;
+        width: 110px;
+        margin: 5px;
+        text-align: center;
     }
 
     .circle {
-        width: 100px;
-        height: 100px;
+        width: 90px;
+        height: 90px;
     }
 
     .inner-circle {
-        width: 70px;
-        height: 70px;
+        width: 65px;
+        height: 65px;
     }
 
     .skill p {
-        font-size: 1rem;
+        font-size: 0.95rem;
         margin-top: 10px;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .mobile-nav {
         width: 100%;
-        padding: 20px;
+        max-width: 100vw;
+        padding: 20px 15px;
+        box-sizing: border-box;
     }
 
     .mobile-nav a {
         font-size: 1.2rem;
         padding: 15px 0;
         text-align: center;
+        display: block;
+        width: 100%;
     }
 
     .close-menu {
@@ -1251,6 +1337,8 @@ a.logo:active {
         width: 100%;
         gap: 15px;
         align-items: center;
+        padding: 0 15px;
+        box-sizing: border-box;
     }
 
     .btn {
@@ -1258,13 +1346,17 @@ a.logo:active {
         max-width: 280px;
         text-align: center;
         justify-content: center;
+        box-sizing: border-box;
     }
 
     .project-filters {
         flex-wrap: wrap;
         gap: 10px;
         justify-content: center;
-        padding: 0 20px;
+        padding: 0 15px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .filter-btn {
@@ -1274,96 +1366,194 @@ a.logo:active {
     }
 
     .section-title {
-        font-size: 2rem;
+        font-size: 1.8rem;
         margin-bottom: 30px;
         text-align: center;
+        padding: 0 15px;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .section-title::after {
         width: 60px;
         height: 2px;
     }
+
+    /* Fix any containers that might cause horizontal scroll */
+    section {
+        width: 100%;
+        max-width: 100vw;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 100%;
+        max-width: 100%;
+        padding: 0 15px;
+        box-sizing: border-box;
+    }
 }
 
 /* Additional fixes for very small screens */
 @media screen and (max-width: 480px) {
     .hero-content h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
         line-height: 1.2;
+        text-align: center;
+        word-wrap: break-word;
+        max-width: 100%;
+        padding: 0 10px;
     }
 
     .hero-content p {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    .typing-text {
+        font-size: 1.2rem;
+        text-align: center;
+        word-wrap: break-word;
+        max-width: 100%;
+    }
+
+    .about {
+        padding: 50px 10px;
     }
 
     .about-text {
-        padding: 0 15px;
+        padding: 0 10px;
+        text-align: center;
     }
 
     .about-text p {
         font-size: 0.95rem;
-        text-align: left;
+        text-align: center;
+        text-align-last: center;
         line-height: 1.6;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .contact-form {
-        padding: 20px 15px;
+        padding: 20px 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
     }
 
     .form-group input,
     .form-group textarea {
         font-size: 0.9rem;
         padding: 10px 12px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .contact-container {
+        padding: 0 10px;
+        width: 100%;
+        max-width: 100%;
     }
 
     .contact-item {
         font-size: 0.9rem;
+        text-align: center;
+        word-wrap: break-word;
+        max-width: 100%;
     }
 
     .contact-item p {
         font-size: 0.9rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .experience-container {
+        padding: 0 10px;
     }
 
     .experience-item {
-        padding: 15px;
+        padding: 15px 10px;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    .experience-header {
+        text-align: center;
     }
 
     .experience-header h3 {
         font-size: 1.1rem;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .company {
         font-size: 0.95rem;
+        text-align: center;
     }
 
     .duration {
         font-size: 0.85rem;
+        text-align: center;
     }
 
     .experience-content li {
         font-size: 0.9rem;
         padding-left: 12px;
+        word-wrap: break-word;
+        max-width: 100%;
+        text-align: left;
+    }
+
+    .project-grid {
+        padding: 0 10px;
     }
 
     .project-content {
-        padding: 15px;
+        padding: 15px 10px;
+        text-align: center;
     }
 
     .project-content h3 {
         font-size: 1.1rem;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .project-content p {
         font-size: 0.9rem;
+        text-align: center;
+        word-wrap: break-word;
     }
 
     .section-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         margin-bottom: 25px;
+        text-align: center;
+        padding: 0 10px;
+        word-wrap: break-word;
+    }
+
+    .skills {
+        padding: 50px 10px;
+    }
+
+    .skill-container {
+        padding: 0 5px;
+        gap: 10px;
+        justify-content: center;
     }
 
     .skill {
         width: 100px;
+        margin: 5px;
+        text-align: center;
     }
 
     .circle {
@@ -1378,6 +1568,43 @@ a.logo:active {
 
     .skill p {
         font-size: 0.9rem;
+        text-align: center;
+        word-wrap: break-word;
+    }
+
+    .hero-buttons {
+        padding: 0 10px;
+        gap: 12px;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 260px;
+        padding: 12px 20px;
+    }
+
+    .project-filters {
+        padding: 0 10px;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        font-size: 0.85rem;
+        padding: 6px 12px;
+    }
+
+    /* Ensure no element exceeds viewport width */
+    * {
+        max-width: 100vw;
+        box-sizing: border-box;
+    }
+
+    section {
+        padding-left: 10px;
+        padding-right: 10px;
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
     }
 }
 
@@ -1811,16 +2038,52 @@ a.logo:active {
 /* Mobile Responsiveness for Chatbot */
 @media screen and (max-width: 768px) {
     .chat-container {
-        width: calc(100% - 40px);
-        height: 60vh;
-        bottom: 80px;
-        right: 20px;
+        right: 15px;
+        bottom: 90px;
+        width: calc(100vw - 30px);
+        max-width: 320px;
+        height: 450px;
     }
 
     .chat-button {
-        width: 50px;
-        height: 50px;
-        font-size: 1.2rem;
+        right: 15px;
+        bottom: 20px;
+        width: 55px;
+        height: 55px;
+        font-size: 1.3rem;
+    }
+
+    .chat-widget {
+        right: 15px;
+        bottom: 20px;
+    }
+
+    .chat-messages {
+        padding: 15px;
+        gap: 12px;
+    }
+
+    .message {
+        max-width: 85%;
+        padding: 10px 14px;
+        font-size: 0.9rem;
+    }
+
+    .chat-input {
+        padding: 15px;
+    }
+
+    .chat-input input {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    .chat-header {
+        padding: 15px;
+    }
+
+    .chat-header h3 {
+        font-size: 1.1rem;
     }
 }
 
@@ -1836,4 +2099,90 @@ a.logo:active {
     0% { opacity: 0.3; }
     50% { opacity: 1; }
     100% { opacity: 0.3; }
+}
+
+/* Prevent horizontal overflow on all devices */
+img {
+    max-width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+/* Ensure all containers stay within viewport */
+.container, .content, .wrapper {
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Fix any potential overflow from pseudo-elements */
+*::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Additional mobile overflow prevention */
+@media (max-width: 768px) {
+    /* Force word wrapping on all text elements */
+    h1, h2, h3, h4, h5, h6, p, span, div, li, a {
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* Prevent any fixed widths from exceeding viewport */
+    .project-image img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+
+    /* Ensure hero background doesn't cause overflow */
+    .hero {
+        width: 100%;
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* Fix any table overflow */
+    table {
+        width: 100%;
+        table-layout: fixed;
+        word-wrap: break-word;
+    }
+
+    /* Prevent pre and code from overflowing */
+    pre, code {
+        max-width: 100%;
+        overflow-x: auto;
+        word-wrap: break-word;
+        white-space: pre-wrap;
+    }
+
+    /* Ensure form elements don't overflow */
+    input, textarea, select {
+        max-width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* Fix any flexbox overflow issues */
+    .flex-container {
+        flex-wrap: wrap;
+    }
+
+    /* Center align all main content sections */
+    .about, .projects, .experience, .contact, .skills {
+        text-align: center;
+    }
+
+    /* Ensure proper text alignment inheritance */
+    .about-text, .project-content, .experience-content {
+        text-align: center;
+    }
+
+    /* Only left-align bulleted lists */
+    .experience-content ul,
+    .experience-content li {
+        text-align: left;
+    }
 } 

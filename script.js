@@ -372,7 +372,7 @@ categoryBtns.forEach(btn => {
     });
 });
 
-// Contact Form Handling with Formspree
+// Contact Form Handling with Email Composition
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -400,47 +400,44 @@ if (contactForm) {
         // Show loading state
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.textContent;
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = 'Preparing...';
         submitBtn.disabled = true;
 
-        // Create FormData for Formspree submission
-        const formData = new FormData();
-        formData.append('name', name);
-        formData.append('email', email);
-        formData.append('subject', subject || 'Portfolio Contact Form');
-        formData.append('message', message);
+        // Create email content
+        const emailSubject = encodeURIComponent(subject || 'Portfolio Contact Form');
+        const emailBody = encodeURIComponent(
+            `Hello Youssef,\n\n` +
+            `You have received a new message through your portfolio website:\n\n` +
+            `Name: ${name}\n` +
+            `Email: ${email}\n` +
+            `Subject: ${subject}\n\n` +
+            `Message:\n${message}\n\n` +
+            `Best regards,\n${name}`
+        );
 
-        // Submit to Formspree (replace 'your-form-id' with your actual Formspree form ID)
-        fetch('https://formspree.io/f/xwpejgro', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'Accept': 'application/json'
-            }
-        })
-        .then(response => {
-            if (response.ok) {
+        // Create mailto link
+        const mailtoLink = `mailto:youssefrrajeh@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+
+        // Try to open default email client
+        try {
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            setTimeout(() => {
                 showSuccessMessage();
                 contactForm.reset();
-            } else {
-                return response.json().then(data => {
-                    if (data.errors) {
-                        throw new Error(data.errors.map(error => error.message).join(', '));
-                    } else {
-                        throw new Error('Form submission failed');
-                    }
-                });
-            }
-        })
-        .catch(error => {
-            console.warn("Formspree submission failed:", error);
+            }, 500);
+            
+        } catch (error) {
+            console.log('Email client not available, showing alternative method');
             showContactFallback(name, email, subject, message);
-        })
-        .finally(() => {
-            // Reset button state
+        }
+
+        // Reset button state
+        setTimeout(() => {
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
-        });
+        }, 2000);
     });
 }
 
@@ -462,8 +459,13 @@ function showSuccessMessage() {
             max-width: 400px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         ">
-            <h3 style="color: #f05a28; margin-bottom: 15px;">✅ Message Sent!</h3>
-            <p>Thank you for your message! I'll get back to you soon.</p>
+            <h3 style="color: #f05a28; margin-bottom: 15px;">📧 Email Ready!</h3>
+            <p>Your email client should have opened with your message pre-filled. Please send it from there, or use the contact information below if you prefer.</p>
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                <strong>Direct Contact:</strong><br>
+                <a href="mailto:youssefrrajeh@gmail.com" style="color: #f05a28;">youssefrrajeh@gmail.com</a><br>
+                <a href="tel:+15483884360" style="color: #f05a28;">+1 (548) 388-4360</a>
+            </div>
             <button onclick="this.parentElement.remove()" style="
                 background: #f05a28; 
                 color: white; 

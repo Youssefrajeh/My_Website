@@ -9,17 +9,6 @@ window.addEventListener('load', () => {
     }
 });
 
-// Add EmailJS script
-const emailScript = document.createElement('script');
-emailScript.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js';
-document.head.appendChild(emailScript);
-
-// Initialize EmailJS after script loads
-emailScript.onload = () => {
-    emailjs.init("uJJqCmxLEd_7M7HNC");
-    console.log("EmailJS initialized successfully");
-};
-
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
@@ -383,7 +372,7 @@ categoryBtns.forEach(btn => {
     });
 });
 
-// Contact Form Handling
+// Contact Form Handling with Formspree
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
     contactForm.addEventListener('submit', function(e) {
@@ -395,36 +384,162 @@ if (contactForm) {
         const subject = document.getElementById('subject').value;
         const message = document.getElementById('message').value;
 
+        // Basic validation
+        if (!name || !email || !message) {
+            alert('Please fill in all required fields (Name, Email, and Message).');
+            return;
+        }
+
+        // Email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+
         // Show loading state
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
 
-        // Send email using EmailJS
-        emailjs.send("service_8wwfyyj", "template_5juazgn", {
-            from_name: name,
-            from_email: email,
-            subject: subject,
-            message: message,
+        // Create FormData for Formspree submission
+        const formData = new FormData();
+        formData.append('name', name);
+        formData.append('email', email);
+        formData.append('subject', subject || 'Portfolio Contact Form');
+        formData.append('message', message);
+
+        // Submit to Formspree (replace 'your-form-id' with your actual Formspree form ID)
+        fetch('https://formspree.io/f/xwpejgro', {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
         })
-        .then(function(response) {
-            console.log("SUCCESS!", response.status, response.text);
-            // Show success message
-            alert('Message sent successfully!');
-            contactForm.reset();
+        .then(response => {
+            if (response.ok) {
+                showSuccessMessage();
+                contactForm.reset();
+            } else {
+                return response.json().then(data => {
+                    if (data.errors) {
+                        throw new Error(data.errors.map(error => error.message).join(', '));
+                    } else {
+                        throw new Error('Form submission failed');
+                    }
+                });
+            }
         })
-        .catch(function(error) {
-            console.error("FAILED...", error);
-            // Show error message with more details
-            alert('Failed to send message: ' + error.text);
+        .catch(error => {
+            console.warn("Formspree submission failed:", error);
+            showContactFallback(name, email, subject, message);
         })
-        .finally(function() {
+        .finally(() => {
             // Reset button state
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
         });
     });
+}
+
+function showSuccessMessage() {
+    const successMessage = `
+        <div style="
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: rgba(10, 25, 47, 0.95); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid #f05a28; 
+            border-radius: 15px; 
+            padding: 30px; 
+            color: white; 
+            text-align: center; 
+            z-index: 10000;
+            max-width: 400px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        ">
+            <h3 style="color: #f05a28; margin-bottom: 15px;">✅ Message Sent!</h3>
+            <p>Thank you for your message! I'll get back to you soon.</p>
+            <button onclick="this.parentElement.remove()" style="
+                background: #f05a28; 
+                color: white; 
+                border: none; 
+                padding: 10px 20px; 
+                border-radius: 25px; 
+                margin-top: 15px; 
+                cursor: pointer;
+            ">Close</button>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', successMessage);
+}
+
+function showContactFallback(name, email, subject, message) {
+    const fallbackMessage = `
+        <div style="
+            position: fixed; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            background: rgba(10, 25, 47, 0.95); 
+            backdrop-filter: blur(20px); 
+            border: 1px solid #f05a28; 
+            border-radius: 15px; 
+            padding: 30px; 
+            color: white; 
+            text-align: center; 
+            z-index: 10000;
+            max-width: 500px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        ">
+            <h3 style="color: #f05a28; margin-bottom: 15px;">📧 Alternative Contact Method</h3>
+            <p style="margin-bottom: 20px;">The automatic email system is temporarily unavailable. Please contact me directly:</p>
+            
+            <div style="background: rgba(255,255,255,0.1); padding: 15px; border-radius: 10px; margin: 15px 0;">
+                <strong>Email:</strong> <a href="mailto:youssefrrajeh@gmail.com" style="color: #f05a28;">youssefrrajeh@gmail.com</a><br>
+                <strong>Phone:</strong> <a href="tel:+15483884360" style="color: #f05a28;">+1 (548) 388-4360</a>
+            </div>
+            
+            <p style="font-size: 0.9em; margin: 15px 0;">Or copy your message details:</p>
+            <textarea readonly style="
+                width: 100%; 
+                height: 120px; 
+                background: rgba(255,255,255,0.1); 
+                border: 1px solid #f05a28; 
+                border-radius: 8px; 
+                color: white; 
+                padding: 10px; 
+                font-family: inherit;
+                font-size: 0.9em;
+            ">${'Subject: ' + (subject || 'Portfolio Contact') + '\\n\\nFrom: ' + name + ' (' + email + ')\\n\\nMessage:\\n' + message}</textarea>
+            
+            <div style="margin-top: 20px;">
+                <button onclick="navigator.clipboard?.writeText(this.previousElementSibling.previousElementSibling.value); alert('Copied to clipboard!')" style="
+                    background: #728fbf; 
+                    color: white; 
+                    border: none; 
+                    padding: 8px 16px; 
+                    border-radius: 20px; 
+                    margin: 5px; 
+                    cursor: pointer;
+                ">Copy Text</button>
+                <button onclick="this.closest('div').remove()" style="
+                    background: #f05a28; 
+                    color: white; 
+                    border: none; 
+                    padding: 8px 16px; 
+                    border-radius: 20px; 
+                    margin: 5px; 
+                    cursor: pointer;
+                ">Close</button>
+            </div>
+        </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', fallbackMessage);
 }
 
 // Dark Mode Toggle

@@ -405,7 +405,7 @@ if (contactForm) {
             if (response.ok) {
                 // Show success message
                 console.log('Response is OK, showing success notification');
-                showNotification('Message sent successfully! Thank you for reaching out.', 'success');
+                showNotification('Message sent successfully To Youssef! Thank you for reaching out.', 'success');
                 contactForm.reset();
             } else {
                 // Get error details from response

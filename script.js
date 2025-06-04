@@ -136,6 +136,8 @@ document.addEventListener('DOMContentLoaded', () => {
             startDelay: 1000,
             loop: true,
             showCursor: false,
+            cursorChar: '',
+            autoInsertCss: false,
             smartBackspace: true
         });
     }

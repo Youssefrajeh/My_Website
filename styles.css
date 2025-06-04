@@ -318,7 +318,6 @@ a.logo:active {
   font-size: 2rem;
   color: var(--primary-color);
   margin-bottom: 30px;
-  min-width: 100%;
   width: 100%;
   text-align: center;
   height: 2.4rem;
@@ -327,6 +326,31 @@ a.logo:active {
   justify-content: center;
   white-space: nowrap;
   overflow: hidden;
+}
+
+/* Remove any cursor from Typed.js */
+.typing-text .typed-cursor,
+.typed-cursor,
+#typed .typed-cursor,
+.typed-cursor-blink {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Ensure no blinking cursor animation */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.typed-cursor {
+  animation: none !important;
 }
 
 .hero-buttons {

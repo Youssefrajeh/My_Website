@@ -337,17 +337,23 @@ a.logo:active {
 }
 
 .about-text {
-    max-width: 100%;
+    max-width: 800px;
     margin: 0 auto;
-    padding: 0 100px;
+    padding: 0 40px;
+    text-align: center;
 }
 
 .about-text p {
-    text-align: center;
-    margin-bottom: 1.5rem;
+    text-align: justify;
+    text-align-last: center;
+    margin-bottom: 1.8rem;
     line-height: 1.8;
     color: var(--text-color);
     font-size: 1.1rem;
+    max-width: 100%;
+    text-rendering: optimizeLegibility;
+    word-spacing: 0.05em;
+    letter-spacing: 0.02em;
 }
 
 .about-text p:first-child {
@@ -357,7 +363,7 @@ a.logo:active {
 
 .cv-button {
     text-align: center;
-    margin-top: 2rem;
+    margin-top: 2.5rem;
 }
 
 /* Skills Section */
@@ -651,18 +657,22 @@ a.logo:active {
 
 .project-content {
     padding: 25px;
+    text-align: left;
 }
 
 .project-content h3 {
     color: var(--text-color);
     margin-bottom: 10px;
     font-size: 1.4rem;
+    text-align: center;
 }
 
 .project-content p {
     color: var(--text-light);
     margin-bottom: 15px;
-    line-height: 1.6;
+    line-height: 1.7;
+    text-align: justify;
+    text-align-last: left;
 }
 
 .project-tech {
@@ -695,6 +705,7 @@ a.logo:active {
     transform: translateY(30px);
     transition: var(--transition);
     will-change: transform, opacity;
+    align-items: start;
 }
 
 .contact-container.visible {
@@ -705,7 +716,7 @@ a.logo:active {
 .contact-form {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
@@ -722,15 +733,14 @@ a.logo:active {
     width: 100%;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 20px;
 }
 
 .form-group input,
 .form-group textarea {
     width: 100%;
-    text-align: center;
-    padding: 15px;
+    text-align: left;
+    padding: 15px 20px;
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
@@ -739,6 +749,13 @@ a.logo:active {
     color: var(--white);
     font-size: 1rem;
     transition: all 0.3s ease;
+    line-height: 1.5;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    text-align: left;
 }
 
 .form-group input:focus,
@@ -749,8 +766,15 @@ a.logo:active {
     box-shadow: 0 0 0 3px rgba(240, 90, 40, 0.1);
 }
 
+.form-group textarea {
+    min-height: 120px;
+    resize: vertical;
+    font-family: inherit;
+}
+
 .submit-btn {
-    margin: 20px auto;
+    margin: 20px 0 0 0;
+    align-self: center;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -763,6 +787,7 @@ a.logo:active {
     font-size: 1rem;
     font-weight: 600;
     transition: all 0.3s ease;
+    min-width: 200px;
 }
 
 .submit-btn:hover {
@@ -778,6 +803,7 @@ a.logo:active {
     width: 100%;
     max-width: 600px;
     margin: 0 auto;
+    justify-content: center;
 }
 
 .contact-item {
@@ -787,12 +813,18 @@ a.logo:active {
     text-align: center;
     gap: 10px;
     color: var(--text-light);
+    width: 100%;
 }
 
 .contact-item i {
     margin-bottom: 10px;
     font-size: 1.5rem;
     color: var(--primary-color);
+}
+
+.contact-item p {
+    margin: 0;
+    line-height: 1.6;
 }
 
 .contact-item a {
@@ -803,7 +835,7 @@ a.logo:active {
 
 .contact-item a:hover {
     color: var(--primary-color);
-    transform: translateX(3px);
+    transform: translateY(-2px);
 }
 
 /* Footer */
@@ -1006,6 +1038,7 @@ a.logo:active {
 
     .hero-content h1 {
         font-size: 2.5rem;
+        line-height: 1.2;
     }
 
     .hero-content p {
@@ -1018,66 +1051,183 @@ a.logo:active {
 
     .about-text {
         padding: 0 20px;
+        max-width: 100%;
     }
 
     .about-text p {
         font-size: 1rem;
-        text-align: center;
+        text-align: left;
+        text-align-last: left;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
     }
 
     .contact-container {
+        grid-template-columns: 1fr;
+        gap: 30px;
         padding: 0 20px;
+        max-width: 100%;
     }
 
     .contact-form {
         width: 100%;
-        padding: 20px;
+        padding: 25px 20px;
+        margin: 0;
     }
 
-    .contact-form input,
-    .contact-form textarea {
+    .form-group {
+        margin-bottom: 18px;
+    }
+
+    .form-group input,
+    .form-group textarea {
         width: 100%;
+        padding: 12px 15px;
+        font-size: 0.95rem;
+        text-align: left;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+        text-align: left;
+    }
+
+    .submit-btn {
+        width: 100%;
+        max-width: 250px;
+        margin: 20px auto 0;
+        padding: 14px 20px;
     }
 
     .contact-info {
         width: 100%;
-        margin-top: 30px;
+        margin: 0;
+        gap: 25px;
     }
 
-    .contact-info-item {
+    .contact-item {
         text-align: center;
+        width: 100%;
     }
 
-    .contact-info-item i {
-        margin-bottom: 10px;
+    .contact-item i {
+        margin-bottom: 8px;
+        font-size: 1.3rem;
+    }
+
+    .contact-item p {
+        font-size: 0.95rem;
+    }
+
+    .project-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 0 20px;
     }
 
     .project-card {
         width: 100%;
-        margin: 10px 0;
+        margin: 0;
+    }
+
+    .project-content {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .project-content h3 {
+        text-align: center;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .project-content p {
+        text-align: left;
+        line-height: 1.6;
+        font-size: 0.95rem;
+    }
+
+    .experience-container {
+        max-width: 100%;
+        padding: 0 20px;
+        gap: 25px;
     }
 
     .experience-item {
         width: 100%;
-        margin: 10px 0;
+        margin: 0;
+        padding: 20px;
     }
 
-    .skills-container {
-        padding: 0 20px;
+    .experience-header {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+
+    .experience-header h3 {
+        font-size: 1.2rem;
+        line-height: 1.3;
+    }
+
+    .company {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .duration {
+        font-size: 0.9rem;
+        text-align: center;
+    }
+
+    .experience-content li {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        text-align: left;
+        padding-left: 15px;
+        margin-bottom: 10px;
+    }
+
+    .experience-content li::before {
+        font-size: 0.7rem;
+    }
+
+    .experience-tech {
+        justify-content: center;
+        gap: 6px;
+    }
+
+    .experience-tech span {
+        font-size: 0.8rem;
+        padding: 5px 10px;
+    }
+
+    .skills {
+        padding: 60px 20px;
+    }
+
+    .skill-container {
+        gap: 20px;
+        padding: 0 10px;
     }
 
     .skill {
-        width: 100%;
-        margin: 10px 0;
+        width: 120px;
+        margin: 10px;
     }
 
-    .category-btn {
-        width: 100%;
-        margin: 5px 0;
+    .circle {
+        width: 100px;
+        height: 100px;
     }
 
-    .category-section {
-        padding: 0 20px;
+    .inner-circle {
+        width: 70px;
+        height: 70px;
+    }
+
+    .skill p {
+        font-size: 1rem;
+        margin-top: 10px;
     }
 
     .mobile-nav {
@@ -1088,6 +1238,7 @@ a.logo:active {
     .mobile-nav a {
         font-size: 1.2rem;
         padding: 15px 0;
+        text-align: center;
     }
 
     .close-menu {
@@ -1098,47 +1249,39 @@ a.logo:active {
     .hero-buttons {
         flex-direction: column;
         width: 100%;
+        gap: 15px;
+        align-items: center;
     }
 
     .btn {
         width: 100%;
-        max-width: 300px;
-    }
-
-    .contact-form {
-        padding: 20px;
-    }
-
-    .form-group input,
-    .form-group textarea {
+        max-width: 280px;
         text-align: center;
-    }
-
-    .submit-btn {
-        width: 100%;
-        max-width: 300px;
-    }
-
-    .contact-info {
-        align-items: center;
-    }
-
-    .contact-item {
-        text-align: center;
+        justify-content: center;
     }
 
     .project-filters {
-        flex-direction: column;
-        align-items: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        justify-content: center;
+        padding: 0 20px;
     }
 
     .filter-btn {
-        width: 100%;
-        max-width: 300px;
+        min-width: 80px;
+        padding: 8px 15px;
+        font-size: 0.9rem;
     }
 
-    .experience-item {
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 30px;
         text-align: center;
+    }
+
+    .section-title::after {
+        width: 60px;
+        height: 2px;
     }
 }
 
@@ -1146,23 +1289,95 @@ a.logo:active {
 @media screen and (max-width: 480px) {
     .hero-content h1 {
         font-size: 2rem;
+        line-height: 1.2;
     }
 
     .hero-content p {
         font-size: 1rem;
     }
 
+    .about-text {
+        padding: 0 15px;
+    }
+
     .about-text p {
         font-size: 0.95rem;
+        text-align: left;
+        line-height: 1.6;
     }
 
-    .contact-form input,
-    .contact-form textarea {
+    .contact-form {
+        padding: 20px 15px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        font-size: 0.9rem;
+        padding: 10px 12px;
+    }
+
+    .contact-item {
+        font-size: 0.9rem;
+    }
+
+    .contact-item p {
+        font-size: 0.9rem;
+    }
+
+    .experience-item {
+        padding: 15px;
+    }
+
+    .experience-header h3 {
+        font-size: 1.1rem;
+    }
+
+    .company {
         font-size: 0.95rem;
     }
 
-    .contact-info-item {
-        font-size: 0.95rem;
+    .duration {
+        font-size: 0.85rem;
+    }
+
+    .experience-content li {
+        font-size: 0.9rem;
+        padding-left: 12px;
+    }
+
+    .project-content {
+        padding: 15px;
+    }
+
+    .project-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .project-content p {
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+    }
+
+    .skill {
+        width: 100px;
+    }
+
+    .circle {
+        width: 80px;
+        height: 80px;
+    }
+
+    .inner-circle {
+        width: 60px;
+        height: 60px;
+    }
+
+    .skill p {
+        font-size: 0.9rem;
     }
 }
 
@@ -1221,13 +1436,12 @@ a.logo:active {
     flex-direction: column;
     align-items: center;
     gap: 30px;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 
 .experience-item {
     width: 100%;
-    text-align: center;
     background: rgba(255, 255, 255, 0.08);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
@@ -1303,6 +1517,7 @@ a.logo:active {
 
 .experience-header {
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .experience-header h3 {
@@ -1311,6 +1526,7 @@ a.logo:active {
     margin-bottom: 8px;
     font-weight: 600;
     transition: all 0.3s ease;
+    line-height: 1.3;
 }
 
 .experience-item:hover .experience-header h3 {
@@ -1324,10 +1540,11 @@ a.logo:active {
     font-weight: 500;
     margin-bottom: 5px;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .experience-item:hover .company {
-    transform: translateX(3px);
+    transform: translateY(-1px);
     text-shadow: 0 0 8px rgba(240, 90, 40, 0.3);
 }
 
@@ -1336,34 +1553,38 @@ a.logo:active {
     font-size: 0.95rem;
     font-style: italic;
     transition: all 0.3s ease;
+    text-align: center;
 }
 
 .experience-item:hover .duration {
     color: var(--white);
-    transform: translateX(3px);
+    transform: translateY(-1px);
 }
 
 .experience-content ul {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     list-style: none;
     padding: 0;
     margin-bottom: 20px;
 }
 
 .experience-content li {
-    text-align: center;
-    padding-left: 0;
     color: var(--text-light);
     margin-bottom: 12px;
     position: relative;
-    line-height: 1.6;
+    line-height: 1.7;
     transition: all 0.3s ease;
+    padding-left: 20px;
+    text-align: left;
 }
 
 .experience-content li::before {
-    display: none;
+    content: '▶';
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 0.8rem;
+    transition: all 0.3s ease;
 }
 
 .experience-item:hover .experience-content li {
@@ -1377,11 +1598,11 @@ a.logo:active {
 }
 
 .experience-tech {
-    justify-content: center;
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
     margin-top: 15px;
+    justify-content: center;
 }
 
 .experience-tech span {
@@ -1399,6 +1620,29 @@ a.logo:active {
     background: rgba(240, 90, 40, 0.2);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(240, 90, 40, 0.2);
+}
+
+/* Section Titles */
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    color: var(--white);
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border-radius: 2px;
 }
 
 /* Chatbot Styles */
@@ -1423,6 +1667,20 @@ a.logo:active {
     justify-content: center;
     box-shadow: 0 4px 12px rgba(240, 90, 40, 0.3);
     transition: all 0.3s ease;
+    position: relative;
+}
+
+.chat-button::after {
+    content: "💬";
+    position: absolute;
+    font-size: 1.2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.chat-button:empty::after,
+.chat-button i:not([class*="fa"])::after {
+    opacity: 1;
 }
 
 .chat-button:hover {

@@ -435,17 +435,23 @@ const body = document.body;
 const savedTheme = localStorage.getItem('theme') || 'dark';
 body.classList.add(savedTheme + '-mode');
 
-themeToggle.addEventListener('click', () => {
-    if (body.classList.contains('dark-mode')) {
-        body.classList.replace('dark-mode', 'light-mode');
-        localStorage.setItem('theme', 'light');
-    } else {
-        body.classList.replace('light-mode', 'dark-mode');
-        localStorage.setItem('theme', 'dark');
-    }
-});
+if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+        if (body.classList.contains('dark-mode')) {
+            body.classList.replace('dark-mode', 'light-mode');
+            localStorage.setItem('theme', 'light');
+        } else {
+            body.classList.replace('light-mode', 'dark-mode');
+            localStorage.setItem('theme', 'dark');
+        }
+    });
+} else {
+    console.log('Theme toggle element not found - skipping theme functionality');
+}
 
 // Chatbot Functionality
+console.log('Chatbot script starting...');
+
 const chatButton = document.getElementById('chatButton');
 const chatContainer = document.getElementById('chatContainer');
 const closeChat = document.getElementById('closeChat');
@@ -453,16 +459,43 @@ const chatMessages = document.getElementById('chatMessages');
 const userInput = document.getElementById('userInput');
 const sendMessage = document.getElementById('sendMessage');
 
-// Toggle chat window
-chatButton.addEventListener('click', () => {
-    chatContainer.classList.add('active');
-    chatButton.style.display = 'none';
+console.log('Chatbot elements:', {
+    chatButton: chatButton,
+    chatContainer: chatContainer,
+    closeChat: closeChat,
+    chatMessages: chatMessages,
+    userInput: userInput,
+    sendMessage: sendMessage
 });
 
-closeChat.addEventListener('click', () => {
-    chatContainer.classList.remove('active');
-    chatButton.style.display = 'flex';
-});
+if (!chatButton) {
+    console.error('chatButton element not found!');
+} else {
+    console.log('chatButton found successfully');
+}
+
+// Toggle chat window
+if (chatButton) {
+    chatButton.addEventListener('click', () => {
+        console.log('Chat button clicked!');
+        if (chatContainer) {
+            chatContainer.classList.add('active');
+            chatButton.style.display = 'none';
+        } else {
+            console.error('chatContainer not found when trying to open');
+        }
+    });
+}
+
+if (closeChat) {
+    closeChat.addEventListener('click', () => {
+        console.log('Close chat clicked!');
+        if (chatContainer) {
+            chatContainer.classList.remove('active');
+            chatButton.style.display = 'flex';
+        }
+    });
+}
 
 // Send message function
 async function sendUserMessage() {
@@ -480,36 +513,177 @@ async function sendUserMessage() {
         chatMessages.scrollTop = chatMessages.scrollHeight;
 
         try {
-            // Make the API call through a backend proxy
-            const response = await fetch('/api/chat', {
+            // Call our local backend API
+            const response = await fetch('http://localhost:5000/api/chat', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
                     message: message
                 })
             });
 
-            const data = await response.json();
-            
-            // Remove typing indicator
-            chatMessages.removeChild(typingDiv);
-
-            if (data.response) {
-                addMessage(data.response, 'bot');
+            if (response.ok) {
+                const data = await response.json();
+                chatMessages.removeChild(typingDiv);
+                
+                // Add source indicator to the response
+                let responseText = data.response;
+                if (data.source === 'openai') {
+                    responseText += ' ✨'; // OpenAI indicator
+                } else if (data.source === 'huggingface') {
+                    responseText += ' 🤗'; // Hugging Face indicator
+                } else {
+                    responseText += ' 🧠'; // Fallback indicator
+                }
+                
+                addMessage(responseText, 'bot');
             } else {
-                throw new Error('Invalid response from server');
+                throw new Error('Backend API failed');
             }
         } catch (error) {
-            // Remove typing indicator
+            console.log('Backend API failed, using local fallback:', error);
             chatMessages.removeChild(typingDiv);
             
-            // Show error message
-            addMessage('I apologize, but I\'m having trouble connecting to my brain right now. Please try again later.', 'bot');
-            console.error('Error:', error);
+            // Local fallback if backend is not available
+            const smartResponse = getSmartResponse(message);
+            addMessage(smartResponse + ' 🔧', 'bot'); // Local fallback indicator
         }
     }
+}
+
+// Enhanced smart response function
+function getSmartResponse(message) {
+    const msg = message.toLowerCase();
+    
+    // Jokes
+    if (msg.includes('joke') || msg.includes('funny') || msg.includes('laugh')) {
+        const jokes = [
+            "Why do programmers prefer dark mode? Because light attracts bugs! 🐛",
+            "How many programmers does it take to change a light bulb? None, that's a hardware problem! 💡",
+            "Why do Java developers wear glasses? Because they don't C#! 👓",
+            "What's a programmer's favorite hangout place? Foo Bar! 🍺",
+            "Why did the programmer quit his job? He didn't get arrays! 📊"
+        ];
+        return jokes[Math.floor(Math.random() * jokes.length)];
+    }
+    
+    // Personal questions about the AI
+    if (msg.includes('how old') || msg.includes('your age') || msg.includes('age are you')) {
+        return "I'm a digital AI assistant, so I don't have an age in the traditional sense! I was created to help visitors learn about Youssef's portfolio. How can I assist you today? 🤖";
+    }
+    
+    if (msg.includes('where are you') || msg.includes('your location') || msg.includes('located')) {
+        return "I exist in the digital realm! I'm hosted on this portfolio website to help visitors learn about Youssef Rajeh's skills and projects. He's located in London, Ontario, Canada. 🌐";
+    }
+    
+    if (msg.includes('what is my name') || msg.includes('my name') || msg.includes('who am i')) {
+        return "I don't know your name, but I'd love to help you learn about Youssef Rajeh's portfolio! Feel free to ask me about his programming skills, projects, or experience. 😊";
+    }
+    
+    if (msg.includes('your name') || msg.includes('who are you') || msg.includes('what are you')) {
+        return "I'm Youssef's AI assistant! I'm here to help visitors learn about his skills, projects, and experience. Think of me as his digital portfolio guide! 🤖";
+    }
+    
+    // How are you / feelings
+    if (msg.includes('how are you') || msg.includes('how do you feel') || msg.includes('how you doing')) {
+        return "I'm doing great, thank you for asking! I'm excited to help you explore Youssef's portfolio. What would you like to know about his software development journey? 😊";
+    }
+    
+    // Name questions
+    if (msg.includes('his name') || msg.includes('owner') || msg.includes('developer')) {
+        return "This is Youssef Rajeh's portfolio! He's a talented software developer currently studying Computer Programming at Fanshawe College with a 3.9 GPA. 👨‍💻";
+    }
+    
+    // General knowledge responses
+    if (msg.includes('what is') || msg.includes('define') || msg.includes('explain')) {
+        const topics = {
+            'programming': 'Programming is the process of creating instructions for computers using programming languages like JavaScript, Python, C++, etc. It\'s like teaching a computer how to solve problems step by step! 💻',
+            'javascript': 'JavaScript is a versatile programming language primarily used for web development, both frontend and backend. It makes websites interactive and dynamic! ⚡',
+            'ai': 'Artificial Intelligence (AI) refers to computer systems that can perform tasks typically requiring human intelligence, like understanding language, recognizing images, or making decisions. 🧠',
+            'machine learning': 'Machine Learning is a subset of AI that enables systems to learn and improve from data without explicit programming. It\'s like teaching computers to learn patterns! 📈',
+            'web development': 'Web development involves creating websites and web applications using technologies like HTML, CSS, and JavaScript. It\'s about building the digital experiences we use every day! 🌐',
+            'html': 'HTML (HyperText Markup Language) is the foundation of web pages. It provides structure and content, like the skeleton of a website! 🏗️',
+            'css': 'CSS (Cascading Style Sheets) makes websites look beautiful! It handles colors, layouts, fonts, and animations. 🎨',
+            'sql': 'SQL (Structured Query Language) is used to communicate with databases. It helps store, retrieve, and manage data efficiently! 🗄️'
+        };
+        
+        for (let topic in topics) {
+            if (msg.includes(topic)) {
+                return topics[topic];
+            }
+        }
+    }
+    
+    // Math calculations
+    if (msg.includes('+') || msg.includes('-') || msg.includes('*') || msg.includes('/') || msg.includes('calculate')) {
+        try {
+            const mathExpression = msg.match(/[\d+\-*/\.\s()]+/);
+            if (mathExpression) {
+                const result = eval(mathExpression[0].replace(/[^0-9+\-*/.() ]/g, ''));
+                return `The answer is: ${result} 🧮`;
+            }
+        } catch (e) {
+            return "I can help with basic math calculations. Try asking something like '5 + 3' or 'calculate 10 * 2'. 📊";
+        }
+    }
+    
+    // Time and date
+    if (msg.includes('time') || msg.includes('date') || msg.includes('today')) {
+        return "I don't have access to real-time data, but I can help you with information about Youssef's portfolio, programming questions, math calculations, and much more! ⏰";
+    }
+    
+    // Weather (mock response)
+    if (msg.includes('weather')) {
+        return "I can't check the weather, but I can tell you about Youssef's skills in any programming language! What would you like to know? ☀️";
+    }
+    
+    // Portfolio-specific responses
+    if (msg.includes('skill') || msg.includes('programming') || msg.includes('language')) {
+        return "Youssef has expertise in C++ (90%), Java (80%), JavaScript (80%), HTML (85%), CSS (85%), SQL (75%), C# (70%), and Kotlin (75%). He's also skilled in Cisco Networking (85%). His strongest area is C++ programming! 💪";
+    }
+    
+    if (msg.includes('experience') || msg.includes('work') || msg.includes('job')) {
+        return "Youssef has 15+ years of professional experience spanning chemistry, quality control, and production management across Syria and Cameroon. He's currently pursuing Computer Programming at Fanshawe College with a 3.9 GPA and seeking software development opportunities! 🌟";
+    }
+    
+    if (msg.includes('project') || msg.includes('github') || msg.includes('code')) {
+        return "Youssef has developed several impressive C++ projects including an Emergency Room Triage system using priority queues, a Breast Cancer Decision Tree for medical AI, and various data analysis tools. Check out his GitHub for more details! 🚀";
+    }
+    
+    if (msg.includes('contact') || msg.includes('email') || msg.includes('phone') || msg.includes('hire')) {
+        return "You can reach Youssef at youssefrrajeh@gmail.com or +1 (548) 388-4360. He's located in London, Ontario, Canada and is actively seeking software development opportunities! 📧📞";
+    }
+    
+    if (msg.includes('education') || msg.includes('school') || msg.includes('college') || msg.includes('fanshawe')) {
+        return "Youssef is currently pursuing an Advanced Diploma in Computer Programming and Analysis at Fanshawe College with an outstanding 3.9 GPA. He has a background in Applied Chemistry! 🎓";
+    }
+    
+    // Greetings
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+        return "Hello! I'm an AI assistant that can help answer questions about programming, technology, math, and more. I can also tell you about Youssef's portfolio and experience. What would you like to know? 👋";
+    }
+    
+    // Help
+    if (msg.includes('help') || msg.includes('what can you do')) {
+        return "I can help with: Programming questions, basic math calculations, general knowledge, information about this portfolio, tell jokes, and much more! Try asking me anything - from 'What is JavaScript?' to 'Tell me about Youssef's skills'! 🎯";
+    }
+    
+    // Thank you
+    if (msg.includes('thank') || msg.includes('thanks')) {
+        return "You're very welcome! I'm happy to help. Feel free to ask me anything else! 😊";
+    }
+    
+    // Default responses with variety
+    const defaultResponses = [
+        "That's an interesting question! I can help with programming topics, math, general knowledge, jokes, and information about Youssef's portfolio. What would you like to explore? 🤔",
+        "I'm here to help! I can answer questions about software development, technology, basic calculations, tell jokes, and share details about this portfolio. What catches your interest? 💡",
+        "Great question! I'm best at discussing programming, technology, math problems, general knowledge, and portfolio information. I can even tell jokes! What would you like to know? 🎈",
+        "I'd love to help with that! Try asking me about programming languages, math calculations, technology topics, Youssef's experience, or ask me to tell you a joke! 🌟"
+    ];
+    
+    return defaultResponses[Math.floor(Math.random() * defaultResponses.length)];
 }
 
 // Add message to chat

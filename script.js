@@ -375,17 +375,23 @@ categoryBtns.forEach(btn => {
 // Contact Form Handling with Formspree
 const contactForm = document.getElementById('contact-form');
 if (contactForm) {
+    console.log('Contact form found, adding event listener');
+    
     contactForm.addEventListener('submit', async function(e) {
         e.preventDefault();
+        console.log('Form submitted, preventing default');
 
         // Show loading state
         const submitBtn = contactForm.querySelector('.submit-btn');
         const originalBtnText = submitBtn.textContent;
         submitBtn.textContent = 'Sending...';
         submitBtn.disabled = true;
+        console.log('Button state changed to loading');
 
         try {
             const formData = new FormData(contactForm);
+            console.log('Form data created:', Array.from(formData.entries()));
+            
             const response = await fetch(contactForm.action, {
                 method: 'POST',
                 body: formData,
@@ -393,19 +399,23 @@ if (contactForm) {
                     'Accept': 'application/json'
                 }
             });
+            
+            console.log('Response received:', response.status, response.statusText);
 
             if (response.ok) {
                 // Show success message
+                console.log('Response is OK, showing success notification');
                 showNotification('Message sent successfully! Thank you for reaching out.', 'success');
                 contactForm.reset();
             } else {
                 // Get error details from response
                 const errorData = await response.json().catch(() => ({}));
                 const errorMessage = errorData.error || `Server responded with status ${response.status}`;
+                console.log('Response not OK, error:', errorMessage);
                 throw new Error(errorMessage);
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Catch block - Error:', error);
             let errorMessage = 'Failed to send message. Please try again later.';
             
             // Provide more specific error messages
@@ -417,20 +427,27 @@ if (contactForm) {
                 errorMessage = `Error: ${error.message}`;
             }
             
+            console.log('Showing error notification:', errorMessage);
             showNotification(errorMessage, 'error');
         } finally {
             // Reset button state
+            console.log('Resetting button state');
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
         }
     });
+} else {
+    console.log('Contact form not found!');
 }
 
 // Notification system
 function showNotification(message, type = 'info') {
+    console.log('showNotification called with:', message, type);
+    
     // Remove any existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
+        console.log('Removing existing notification');
         existingNotification.remove();
     }
 
@@ -443,25 +460,65 @@ function showNotification(message, type = 'info') {
             <button class="notification-close">&times;</button>
         </div>
     `;
+    
+    console.log('Notification element created:', notification);
 
     // Add to page
     document.body.appendChild(notification);
+    console.log('Notification added to body');
 
     // Add click to close functionality
     const closeBtn = notification.querySelector('.notification-close');
     closeBtn.addEventListener('click', () => {
+        console.log('Close button clicked');
         notification.remove();
     });
 
     // Auto remove after 5 seconds
     setTimeout(() => {
         if (notification.parentNode) {
+            console.log('Auto-removing notification after 5 seconds');
             notification.remove();
         }
     }, 5000);
 
     // Trigger animation
     setTimeout(() => {
+        console.log('Adding show class to notification');
         notification.classList.add('show');
     }, 100);
-} 
+}
+
+// Test notification function for debugging
+function testNotification() {
+    console.log('Testing notification system...');
+    showNotification('Test notification - this should appear!', 'success');
+}
+
+// Make test function available globally for debugging
+window.testNotification = testNotification;
+
+// Check if notification styles are loaded
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, running checks...');
+    
+    // Test if notification CSS exists
+    const testNotification = document.createElement('div');
+    testNotification.className = 'notification';
+    testNotification.style.position = 'fixed';
+    testNotification.style.top = '-100px';
+    document.body.appendChild(testNotification);
+    
+    const computedStyle = window.getComputedStyle(testNotification);
+    console.log('Notification CSS check - position:', computedStyle.position);
+    console.log('Notification CSS check - z-index:', computedStyle.zIndex);
+    
+    document.body.removeChild(testNotification);
+    
+    // Check if contact form exists
+    const form = document.getElementById('contact-form');
+    console.log('Contact form exists:', !!form);
+    if (form) {
+        console.log('Form action:', form.action);
+    }
+}); 

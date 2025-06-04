@@ -1691,18 +1691,19 @@ a.logo:active {
   position: fixed;
   top: 20px;
   right: 20px;
-  z-index: 9999;
-  background: rgba(255, 255, 255, 0.08);
+  z-index: 99999;
+  background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(20px) saturate(150%);
   -webkit-backdrop-filter: blur(20px) saturate(150%);
-  border-radius: 8px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.2);
   border-left: 4px solid var(--primary-color);
   opacity: 0;
   transform: translateX(100%);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   max-width: 400px;
   min-width: 300px;
+  pointer-events: auto;
 }
 
 .notification.show {
@@ -1712,68 +1713,92 @@ a.logo:active {
 
 .notification-success {
   border-left-color: #10b981;
+  background: rgba(16, 185, 129, 0.1);
 }
 
 .notification-error {
   border-left-color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
 }
 
 .notification-content {
-  padding: 16px 20px;
+  padding: 20px 24px;
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 12px;
+  gap: 16px;
 }
 
 .notification-message {
-  color: var(--text-color);
-  font-size: 14px;
-  line-height: 1.4;
+  color: var(--dark-color);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.5;
   flex: 1;
 }
 
 .notification-close {
   background: none;
   border: none;
-  color: var(--text-light);
+  color: var(--dark-color);
   cursor: pointer;
-  font-size: 18px;
+  font-size: 20px;
+  font-weight: bold;
   padding: 0;
   margin: 0;
   line-height: 1;
   transition: color 0.2s ease;
   flex-shrink: 0;
+  opacity: 0.7;
 }
 
 .notification-close:hover {
-  color: var(--text-color);
+  opacity: 1;
+  color: var(--primary-color);
 }
 
 /* Success notification specific styles */
 .notification-success .notification-message {
-  color: #10b981;
+  color: #065f46;
+}
+
+.notification-success .notification-close {
+  color: #065f46;
 }
 
 /* Error notification specific styles */
 .notification-error .notification-message {
-  color: #ef4444;
+  color: #7f1d1d;
+}
+
+.notification-error .notification-close {
+  color: #7f1d1d;
 }
 
 /* Form loading state improvements */
 .contact-form .submit-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  background: #888;
 }
 
 /* Mobile notification adjustments */
 @media (max-width: 768px) {
   .notification {
-    right: 10px;
-    left: 10px;
+    right: 15px;
+    left: 15px;
+    top: 15px;
     max-width: none;
     min-width: auto;
     box-sizing: border-box;
+  }
+
+  .notification-content {
+    padding: 16px 20px;
+  }
+
+  .notification-message {
+    font-size: 14px;
   }
 }
 

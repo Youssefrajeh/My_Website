@@ -444,6 +444,11 @@ if (contactForm) {
 function showNotification(message, type = 'info') {
     console.log('showNotification called with:', message, type);
     
+    // Mobile-specific debugging
+    const isMobile = window.innerWidth <= 768;
+    console.log('Is mobile device:', isMobile);
+    console.log('Viewport dimensions:', window.innerWidth, 'x', window.innerHeight);
+    
     // Remove any existing notifications
     const existingNotification = document.querySelector('.notification');
     if (existingNotification) {
@@ -454,6 +459,20 @@ function showNotification(message, type = 'info') {
     // Create notification element
     const notification = document.createElement('div');
     notification.className = `notification notification-${type}`;
+    
+    // Add mobile-specific attributes
+    if (isMobile) {
+        notification.style.position = 'fixed';
+        notification.style.zIndex = '999999';
+        notification.style.top = '20px';
+        notification.style.left = '10px';
+        notification.style.right = '10px';
+        notification.style.width = 'calc(100vw - 20px)';
+        notification.style.transform = 'translateY(-100%)';
+        notification.style.opacity = '0';
+        console.log('Applied mobile-specific styles');
+    }
+    
     notification.innerHTML = `
         <div class="notification-content">
             <span class="notification-message">${message}</span>
@@ -462,31 +481,84 @@ function showNotification(message, type = 'info') {
     `;
     
     console.log('Notification element created:', notification);
+    console.log('Notification computed styles before adding:', {
+        position: notification.style.position,
+        zIndex: notification.style.zIndex,
+        top: notification.style.top
+    });
 
     // Add to page
     document.body.appendChild(notification);
     console.log('Notification added to body');
+    
+    // Force a reflow to ensure styles are applied
+    notification.offsetHeight;
 
-    // Add click to close functionality
+    // Add click to close functionality with touch support
     const closeBtn = notification.querySelector('.notification-close');
-    closeBtn.addEventListener('click', () => {
+    closeBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
         console.log('Close button clicked');
         notification.remove();
     });
+    
+    // Add touch support for mobile
+    if (isMobile) {
+        closeBtn.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Close button touched');
+            notification.remove();
+        });
+        
+        // Make the entire notification clickable on mobile
+        notification.addEventListener('touchend', (e) => {
+            if (e.target === notification || e.target.classList.contains('notification-content')) {
+                e.preventDefault();
+                console.log('Notification touched - closing');
+                notification.remove();
+            }
+        });
+    }
 
-    // Auto remove after 5 seconds
+    // Auto remove after 7 seconds (longer for mobile)
+    const autoRemoveTime = isMobile ? 7000 : 5000;
     setTimeout(() => {
         if (notification.parentNode) {
-            console.log('Auto-removing notification after 5 seconds');
+            console.log(`Auto-removing notification after ${autoRemoveTime/1000} seconds`);
             notification.remove();
         }
-    }, 5000);
+    }, autoRemoveTime);
 
-    // Trigger animation
+    // Trigger animation with a slight delay for mobile
+    const animationDelay = isMobile ? 200 : 100;
     setTimeout(() => {
         console.log('Adding show class to notification');
         notification.classList.add('show');
-    }, 100);
+        
+        // Additional mobile animation trigger
+        if (isMobile) {
+            notification.style.transform = 'translateY(0)';
+            notification.style.opacity = '1';
+            console.log('Applied mobile animation styles manually');
+        }
+    }, animationDelay);
+    
+    // Log final computed styles
+    setTimeout(() => {
+        const computedStyle = window.getComputedStyle(notification);
+        console.log('Final notification computed styles:', {
+            position: computedStyle.position,
+            zIndex: computedStyle.zIndex,
+            top: computedStyle.top,
+            left: computedStyle.left,
+            right: computedStyle.right,
+            transform: computedStyle.transform,
+            opacity: computedStyle.opacity,
+            visibility: computedStyle.visibility
+        });
+    }, animationDelay + 100);
 }
 
 // Test notification function for debugging

@@ -65,6 +65,67 @@
       .pdf-actions a:hover {
         background: #d04a1f;
       }
+      .coming-soon-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: linear-gradient(135deg, #232526 0%, #414345 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 99999;
+        flex-direction: column;
+      }
+      .coming-soon-content {
+        text-align: center;
+        color: #fff;
+        animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .coming-soon-content h1 {
+        font-size: 3rem;
+        margin-bottom: 18px;
+        letter-spacing: 2px;
+        font-weight: 700;
+        background: linear-gradient(90deg, #f05a28, #728fbf);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .coming-soon-content p {
+        font-size: 1.3rem;
+        color: #e0e0e0;
+        margin-bottom: 30px;
+      }
+      .coming-soon-animation {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 30px auto;
+        border: 8px solid #f05a28;
+        border-top: 8px solid #728fbf;
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+        box-shadow: 0 0 30px #f05a2844;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.95);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
     </style>
   </head>
   <body>
@@ -91,7 +152,20 @@
         </div>
       </div>
     </nav>
-    <div class="library-container">
+    <div class="coming-soon-overlay">
+      <div class="coming-soon-content">
+        <div class="coming-soon-animation"></div>
+        <h1>Coming Soon</h1>
+        <p>
+          We're working hard to bring you an amazing library experience. Stay
+          tuned!
+        </p>
+      </div>
+    </div>
+    <div
+      class="library-container"
+      style="filter: blur(2px); pointer-events: none; user-select: none"
+    >
       <h1
         style="
           text-align: center;

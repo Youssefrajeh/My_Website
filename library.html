@@ -1,3 +1,386 @@
+<<<<<<< HEAD
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .library-container {
+        max-width: 900px;
+        margin: 60px auto 40px auto;
+        padding: 30px;
+        background: rgba(255, 255, 255, 0.04);
+        border-radius: 20px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+      }
+      .library-section {
+        margin-bottom: 48px;
+      }
+      .library-section h2 {
+        font-size: 2rem;
+        color: var(--primary-color);
+        margin-bottom: 18px;
+        text-align: left;
+      }
+      .pdf-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+      .pdf-card {
+        background: rgba(255, 255, 255, 0.08);
+        border-radius: 14px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        padding: 18px 22px;
+        min-width: 220px;
+        flex: 1 1 220px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        transition: box-shadow 0.3s;
+      }
+      .pdf-card:hover {
+        box-shadow: 0 8px 32px rgba(240, 90, 40, 0.15);
+      }
+      .pdf-title {
+        font-size: 1.1rem;
+        color: var(--white);
+        margin-bottom: 10px;
+        font-weight: 500;
+      }
+      .pdf-actions {
+        display: flex;
+        gap: 10px;
+      }
+      .pdf-actions a {
+        background: var(--primary-color);
+        color: var(--white);
+        padding: 6px 16px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: background 0.2s;
+      }
+      .pdf-actions a:hover {
+        background: #d04a1f;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav-container">
+      <div class="nav-content">
+        <a
+          href="index.html"
+          class="logo"
+          style="padding: 0; background: none; border: none"
+        >
+          <video class="logo-video-navbar" autoplay loop muted playsinline>
+            <source src="./logo/Y.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </a>
+        <div class="nav-links">
+          <a href="index.html#home" class="nav-link">Home</a>
+          <a href="index.html#about" class="nav-link">About</a>
+          <a href="index.html#experience" class="nav-link">Experience</a>
+          <a href="index.html#skills" class="nav-link">Skills</a>
+          <a href="index.html#projects" class="nav-link">Projects</a>
+          <a href="index.html#contact" class="nav-link">Contact</a>
+          <a href="library.html" class="nav-link active">Library</a>
+        </div>
+      </div>
+    </nav>
+    <div class="library-container">
+      <h1
+        style="
+          text-align: center;
+          color: var(--white);
+          margin-bottom: 40px;
+          font-size: 2.5rem;
+        "
+      >
+        Library
+      </h1>
+      <div
+        class="library-filters"
+        style="
+          display: flex;
+          justify-content: center;
+          gap: 16px;
+          margin-bottom: 32px;
+        "
+      >
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="chemistry">Chemistry</button>
+        <button class="filter-btn" data-filter="programming">
+          Programming
+        </button>
+      </div>
+      <div class="library-sections">
+        <div class="library-section category-chemistry" id="chemistry-section">
+          <h2>Chemistry</h2>
+          <div class="pdf-list">
+            <!-- Example PDF card -->
+            <div class="pdf-card">
+              <div class="pdf-title">Sample Chemistry PDF</div>
+              <div class="pdf-actions">
+                <a href="pdf/sample-chemistry.pdf" target="_blank">View</a>
+                <a href="pdf/sample-chemistry.pdf" download>Download</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="library-section category-programming"
+          id="programming-section"
+        >
+          <h2>Programming</h2>
+          <div
+            class="subcat-filters"
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 12px;
+              margin-bottom: 24px;
+            "
+          >
+            <button class="filter-btn subcat-btn active" data-subcat="cobol">
+              COBOL
+            </button>
+            <button class="filter-btn subcat-btn" data-subcat="sql">SQL</button>
+            <button class="filter-btn subcat-btn" data-subcat="cpp">C++</button>
+            <button class="filter-btn subcat-btn" data-subcat="java">
+              JAVA
+            </button>
+          </div>
+          <div class="subcat-section subcat-cobol" style="display: block">
+            <div class="pdf-list">
+              <div class="pdf-card">
+                <div class="pdf-title">
+                  Murach's Mainframe COBOL (Mike Murach, Anne Prince, Raul
+                  Menendez, 2004)
+                </div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/COBOL/Mike%20Murach,%20Anne%20Prince,%20Raul%20Menendez%20-%20Murach's%20Mainframe%20COBOL-Mike%20Murach%20&%20Associates%20Inc%20(2004).pdf"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/COBOL/Mike%20Murach,%20Anne%20Prince,%20Raul%20Menendez%20-%20Murach's%20Mainframe%20COBOL-Mike%20Murach%20&%20Associates%20Inc%20(2004).pdf"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="subcat-section subcat-sql" style="display: none">
+            <div class="pdf-list">
+              <!-- SQL DOCX cards here (already added in previous step) -->
+              <div class="pdf-card">
+                <div class="pdf-title">
+                  Class 19 - Transactions and Isolation
+                </div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2019%20-%20Transactions%20and%20Isolation.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2019%20-%20Transactions%20and%20Isolation.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">
+                  Class 20 - Intermediate Stored Procs 1
+                </div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2020%20-%20Intermediate%20Stored%20Procs%201.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2020%20-%20Intermediate%20Stored%20Procs%201.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">
+                  Class 21 - Intermediate Stored Procs 2 StringSplit CrossApply
+                </div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2021%20-%20Intermediate%20Stored%20Procs%202%20StringSplit%20CrossApply.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2021%20-%20Intermediate%20Stored%20Procs%202%20StringSplit%20CrossApply.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">Class 22 - Homework Answers1</div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2022%20-%20Homework%20Answers1.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2022%20-%20Homework%20Answers1.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">Class 22 - Subqueries</div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2022%20-%20Subqueries.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2022%20-%20Subqueries.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">Class 23 - Homework Answers1</div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2023%20-%20Homework%20Answers1.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2023%20-%20Homework%20Answers1.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+              <div class="pdf-card">
+                <div class="pdf-title">Class 23 - Window Functions</div>
+                <div class="pdf-actions">
+                  <a
+                    href="pdf/Programing/SQL/Class%2023%20-%20Window%20Functions.docx"
+                    target="_blank"
+                    >View</a
+                  >
+                  <a
+                    href="pdf/Programing/SQL/Class%2023%20-%20Window%20Functions.docx"
+                    download
+                    >Download</a
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="subcat-section subcat-cpp" style="display: none">
+            <div class="pdf-list">
+              <!-- Add C++ files here -->
+            </div>
+          </div>
+          <div class="subcat-section subcat-java" style="display: none">
+            <div class="pdf-list">
+              <!-- Add JAVA files here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const sections = document.querySelectorAll(".library-section");
+        const subcatFilters = document.querySelector(".subcat-filters");
+        const subcatBtns = document.querySelectorAll(".subcat-btn");
+        const subcatSections = document.querySelectorAll(".subcat-section");
+
+        function showProgrammingDefaultSubcat() {
+          if (subcatFilters) subcatFilters.style.display = "flex";
+          subcatBtns.forEach((btn, i) =>
+            btn.classList.toggle("active", i === 0)
+          );
+          subcatSections.forEach(
+            (section, i) => (section.style.display = i === 0 ? "block" : "none")
+          );
+        }
+
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const filter = btn.getAttribute("data-filter");
+            sections.forEach((section) => {
+              if (
+                filter === "all" ||
+                section.classList.contains("category-" + filter)
+              ) {
+                section.style.display = "";
+              } else {
+                section.style.display = "none";
+              }
+            });
+            // Show/hide programming subsections if programming is selected
+            if (filter === "programming") {
+              showProgrammingDefaultSubcat();
+            } else if (subcatFilters) {
+              subcatFilters.style.display = "none";
+              subcatSections.forEach(
+                (section) => (section.style.display = "none")
+              );
+            }
+          });
+        });
+        // Subcategory (subsection) filter logic
+        subcatBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            subcatBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+            const subcat = btn.getAttribute("data-subcat");
+            subcatSections.forEach((section) => {
+              section.style.display = section.classList.contains(
+                "subcat-" + subcat
+              )
+                ? "block"
+                : "none";
+            });
+          });
+        });
+        // On page load, show/hide subcat filters based on selected main category
+        const activeMain = document.querySelector(".filter-btn.active");
+        if (
+          activeMain &&
+          activeMain.getAttribute("data-filter") === "programming"
+        ) {
+          showProgrammingDefaultSubcat();
+        } else if (subcatFilters) {
+          subcatFilters.style.display = "none";
+          subcatSections.forEach((section) => (section.style.display = "none"));
+        }
+      });
+    </script>
+  </body>
+</html>
+=======
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -490,3 +873,4 @@
     </script>
   </body>
 </html>
+>>>>>>> a5ba479d9917243617df42f4a8831e1dd2794458

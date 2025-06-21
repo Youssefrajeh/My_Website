@@ -377,5 +377,520 @@
         }
       });
     </script>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- SEO Meta Tags -->
+        <title>
+          Library - Youssef Rajeh | Programming & Chemistry Resources
+        </title>
+        <meta
+          name="description"
+          content="Access Youssef Rajeh's curated library of programming and chemistry resources. Find COBOL, SQL, C++, Java programming materials and chemistry references for students and professionals."
+        />
+        <meta
+          name="keywords"
+          content="programming library, COBOL resources, SQL documentation, Java tutorials, C++ references, chemistry materials, Youssef Rajeh, programming resources, computer science library"
+        />
+        <meta name="author" content="Youssef Rajeh" />
+        <meta name="robots" content="index, follow" />
+
+        <!-- Open Graph Meta Tags -->
+        <meta
+          property="og:title"
+          content="Library - Youssef Rajeh | Programming & Chemistry Resources"
+        />
+        <meta
+          property="og:description"
+          content="Access curated programming and chemistry resources including COBOL, SQL, C++, Java materials and chemistry references."
+        />
+        <meta property="og:type" content="website" />
+        <meta
+          property="og:url"
+          content="https://youssefrajeh.github.io/_youssefrajeh/library.html"
+        />
+        <meta property="og:site_name" content="Youssef Rajeh Portfolio" />
+        <meta property="og:locale" content="en_CA" />
+
+        <!-- Twitter Card Meta Tags -->
+        <meta name="twitter:card" content="summary" />
+        <meta
+          name="twitter:title"
+          content="Library - Youssef Rajeh | Programming & Chemistry Resources"
+        />
+        <meta
+          name="twitter:description"
+          content="Access curated programming and chemistry resources including COBOL, SQL, C++, Java materials."
+        />
+
+        <!-- Canonical URL -->
+        <link
+          rel="canonical"
+          href="https://youssefrajeh.github.io/_youssefrajeh/library.html"
+        />
+
+        <!-- Structured Data -->
+        <script type="application/ld+json">
+          {
+            "@context": "https://schema.org",
+            "@type": "CollectionPage",
+            "name": "Programming & Chemistry Library",
+            "description": "Curated collection of programming and chemistry educational resources",
+            "url": "https://youssefrajeh.github.io/_youssefrajeh/library.html",
+            "author": {
+              "@type": "Person",
+              "name": "Youssef Rajeh"
+            },
+            "about": [
+              {
+                "@type": "Thing",
+                "name": "Computer Programming"
+              },
+              {
+                "@type": "Thing",
+                "name": "Applied Chemistry"
+              }
+            ],
+            "hasPart": [
+              {
+                "@type": "CreativeWork",
+                "name": "COBOL Programming Resources",
+                "about": "COBOL Programming Language"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "SQL Database Resources",
+                "about": "SQL Database Management"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "C++ Programming Resources",
+                "about": "C++ Programming Language"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Java Programming Resources",
+                "about": "Java Programming Language"
+              },
+              {
+                "@type": "CreativeWork",
+                "name": "Chemistry References",
+                "about": "Applied Chemistry"
+              }
+            ]
+          }
+        </script>
+
+        <link rel="stylesheet" href="styles.css" />
+        <style>
+          .library-container {
+            max-width: 900px;
+            margin: 60px auto 40px auto;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+          }
+          .library-section {
+            margin-bottom: 48px;
+          }
+          .library-section h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 18px;
+            text-align: left;
+          }
+          .pdf-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+          }
+          .pdf-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 14px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            padding: 18px 22px;
+            min-width: 220px;
+            flex: 1 1 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            transition: box-shadow 0.3s;
+          }
+          .pdf-card:hover {
+            box-shadow: 0 8px 32px rgba(240, 90, 40, 0.15);
+          }
+          .pdf-title {
+            font-size: 1.1rem;
+            color: var(--white);
+            margin-bottom: 10px;
+            font-weight: 500;
+          }
+          .pdf-actions {
+            display: flex;
+            gap: 10px;
+          }
+          .pdf-actions a {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 6px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: background 0.2s;
+          }
+          .pdf-actions a:hover {
+            background: #d04a1f;
+          }
+          .coming-soon-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 99999;
+            flex-direction: column;
+          }
+          .coming-soon-content {
+            text-align: center;
+            color: #fff;
+            animation: fadeIn 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+          }
+          .coming-soon-content h1 {
+            font-size: 3rem;
+            margin-bottom: 18px;
+            letter-spacing: 2px;
+            font-weight: 700;
+            background: linear-gradient(90deg, #f05a28, #728fbf);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+          }
+          .coming-soon-content p {
+            font-size: 1.3rem;
+            color: #e0e0e0;
+            margin-bottom: 30px;
+          }
+          .coming-soon-animation {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 30px auto;
+            border: 8px solid #f05a28;
+            border-top: 8px solid #728fbf;
+            border-radius: 50%;
+            animation: spin 1.2s linear infinite;
+            box-shadow: 0 0 30px #f05a2844;
+          }
+          @keyframes spin {
+            0% {
+              transform: rotate(0deg);
+            }
+            100% {
+              transform: rotate(360deg);
+            }
+          }
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: scale(0.95);
+            }
+            to {
+              opacity: 1;
+              transform: scale(1);
+            }
+          }
+          .back-main-btn {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 12px 32px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #fff;
+            background: linear-gradient(90deg, #f05a28, #728fbf);
+            border: none;
+            border-radius: 30px;
+            text-decoration: none;
+            box-shadow: 0 4px 16px rgba(240, 90, 40, 0.15);
+            transition: background 0.3s, transform 0.2s;
+            letter-spacing: 1px;
+          }
+          .back-main-btn:hover {
+            background: linear-gradient(90deg, #728fbf, #f05a28);
+            color: #fff;
+            transform: translateY(-2px) scale(1.04);
+            box-shadow: 0 8px 32px rgba(114, 143, 191, 0.18);
+          }
+        </style>
+      </head>
+      <body>
+        <nav class="nav-container">
+          <div class="nav-content">
+            <a
+              href="index.html"
+              class="logo"
+              style="padding: 0; background: none; border: none"
+            >
+              <video class="logo-video-navbar" autoplay loop muted playsinline>
+                <source src="./logo/Y.mp4" type="video/mp4" />
+                Your browser does not support the video tag.
+              </video>
+            </a>
+            <div class="nav-links">
+              <a href="index.html#home" class="nav-link">Home</a>
+              <a href="index.html#about" class="nav-link">About</a>
+              <a href="index.html#experience" class="nav-link">Experience</a>
+              <a href="index.html#skills" class="nav-link">Skills</a>
+              <a href="index.html#projects" class="nav-link">Projects</a>
+              <a href="index.html#contact" class="nav-link">Contact</a>
+              <a href="library.html" class="nav-link active">Library</a>
+            </div>
+          </div>
+        </nav>
+        <div class="coming-soon-overlay">
+          <div class="coming-soon-content">
+            <div class="coming-soon-animation"></div>
+            <h1>Coming Soon</h1>
+            <p>
+              We're working hard to bring you an amazing library experience.
+              Stay tuned!
+            </p>
+            <a href="index.html" class="back-main-btn">Back to Main Page</a>
+          </div>
+        </div>
+        <div
+          class="library-container"
+          style="filter: blur(2px); pointer-events: none; user-select: none"
+        >
+          <h1
+            style="
+              text-align: center;
+              color: var(--white);
+              margin-bottom: 40px;
+              font-size: 2.5rem;
+            "
+          >
+            Library
+          </h1>
+          <div
+            class="library-filters"
+            style="
+              display: flex;
+              justify-content: center;
+              gap: 16px;
+              margin-bottom: 32px;
+            "
+          >
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="chemistry">
+              Chemistry
+            </button>
+            <button class="filter-btn" data-filter="programming">
+              Programming
+            </button>
+          </div>
+          <div class="library-sections">
+            <div
+              class="library-section category-chemistry"
+              id="chemistry-section"
+            >
+              <h2>Chemistry</h2>
+              <div class="pdf-list">
+                <div class="pdf-card">
+                  <div class="pdf-title">Chemistry Library (Google Drive)</div>
+                  <div class="pdf-actions">
+                    <a
+                      href="https://drive.google.com/drive/folders/1B6rvGTDixK4zkPNJR4VkLYy4oyPC8GWo?usp=sharing"
+                      target="_blank"
+                      >Open Folder</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="library-section category-programming"
+              id="programming-section"
+            >
+              <h2>Programming</h2>
+              <div
+                class="subcat-filters"
+                style="
+                  display: flex;
+                  justify-content: center;
+                  gap: 12px;
+                  margin-bottom: 24px;
+                "
+              >
+                <button
+                  class="filter-btn subcat-btn active"
+                  data-subcat="cobol"
+                >
+                  COBOL
+                </button>
+                <button class="filter-btn subcat-btn" data-subcat="sql">
+                  SQL
+                </button>
+                <button class="filter-btn subcat-btn" data-subcat="cpp">
+                  C++
+                </button>
+                <button class="filter-btn subcat-btn" data-subcat="java">
+                  JAVA
+                </button>
+              </div>
+              <div class="subcat-section subcat-cobol" style="display: block">
+                <div style="width: 100%">
+                  <h3
+                    style="color: var(--secondary-color); margin-bottom: 10px"
+                  >
+                    COBOL
+                  </h3>
+                </div>
+                <div class="pdf-list">
+                  <div class="pdf-card">
+                    <div class="pdf-title">COBOL Library (Google Drive)</div>
+                    <div class="pdf-actions">
+                      <a
+                        href="https://drive.google.com/drive/folders/1lHVI7rPRwbYYrPP3p_EVtqxJoOOTNM-9?usp=sharing"
+                        target="_blank"
+                        >Open Folder</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="subcat-section subcat-sql" style="display: none">
+                <div style="width: 100%">
+                  <h3
+                    style="color: var(--secondary-color); margin-bottom: 10px"
+                  >
+                    SQL
+                  </h3>
+                </div>
+                <div class="pdf-list">
+                  <div class="pdf-card">
+                    <div class="pdf-title">SQL Library (Google Drive)</div>
+                    <div class="pdf-actions">
+                      <a
+                        href="https://drive.google.com/drive/folders/1B6rvGTDixK4zkPNJR4VkLYy4oyPC8GWo?usp=sharing"
+                        target="_blank"
+                        >Open Folder</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="subcat-section subcat-cpp" style="display: none">
+                <div style="width: 100%">
+                  <h3
+                    style="color: var(--secondary-color); margin-bottom: 10px"
+                  >
+                    C++
+                  </h3>
+                </div>
+                <div class="pdf-list">
+                  <div class="pdf-card">
+                    <div class="pdf-title">C++ Library (Google Drive)</div>
+                    <div class="pdf-actions">
+                      <a
+                        href="https://drive.google.com/drive/folders/16OaFEX3E-TmTfY3lVOKQJ1ZF0DIxno3H?usp=sharing"
+                        target="_blank"
+                        >Open Folder</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="subcat-section subcat-java" style="display: none">
+                <div class="pdf-list">
+                  <!-- Add JAVA files here -->
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <script>
+          document.addEventListener("DOMContentLoaded", function () {
+            const filterBtns = document.querySelectorAll(".filter-btn");
+            const sections = document.querySelectorAll(".library-section");
+            const subcatFilters = document.querySelector(".subcat-filters");
+            const subcatBtns = document.querySelectorAll(".subcat-btn");
+            const subcatSections = document.querySelectorAll(".subcat-section");
+
+            function showProgrammingDefaultSubcat() {
+              if (subcatFilters) subcatFilters.style.display = "flex";
+              subcatBtns.forEach((btn, i) =>
+                btn.classList.toggle("active", i === 0)
+              );
+              subcatSections.forEach(
+                (section, i) =>
+                  (section.style.display = i === 0 ? "block" : "none")
+              );
+            }
+
+            filterBtns.forEach((btn) => {
+              btn.addEventListener("click", () => {
+                filterBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                const filter = btn.getAttribute("data-filter");
+                sections.forEach((section) => {
+                  if (
+                    filter === "all" ||
+                    section.classList.contains("category-" + filter)
+                  ) {
+                    section.style.display = "";
+                  } else {
+                    section.style.display = "none";
+                  }
+                });
+                // Show/hide programming subsections if programming is selected
+                if (filter === "programming") {
+                  showProgrammingDefaultSubcat();
+                } else if (subcatFilters) {
+                  subcatFilters.style.display = "none";
+                  subcatSections.forEach(
+                    (section) => (section.style.display = "none")
+                  );
+                }
+              });
+            });
+            // Subcategory (subsection) filter logic
+            subcatBtns.forEach((btn) => {
+              btn.addEventListener("click", () => {
+                subcatBtns.forEach((b) => b.classList.remove("active"));
+                btn.classList.add("active");
+                const subcat = btn.getAttribute("data-subcat");
+                subcatSections.forEach((section) => {
+                  section.style.display = section.classList.contains(
+                    "subcat-" + subcat
+                  )
+                    ? "block"
+                    : "none";
+                });
+              });
+            });
+            // On page load, show/hide subcat filters based on selected main category
+            const activeMain = document.querySelector(".filter-btn.active");
+            if (
+              activeMain &&
+              activeMain.getAttribute("data-filter") === "programming"
+            ) {
+              showProgrammingDefaultSubcat();
+            } else if (subcatFilters) {
+              subcatFilters.style.display = "none";
+              subcatSections.forEach(
+                (section) => (section.style.display = "none")
+              );
+            }
+          });
+        </script>
+      </body>
+    </html>
   </body>
 </html>

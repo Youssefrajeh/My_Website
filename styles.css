@@ -1437,7 +1437,10 @@ a.logo:active {
   }
 
   .project-content h3 {
-    display: none;
+    font-size: 1rem;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    text-align: center;
   }
 
   .project-content p {
@@ -1661,16 +1664,17 @@ a.logo:active {
   }
 
   .project-card {
-    height: 200px;
+    height: 230px;
     perspective: 700px;
   }
 
   .project-content {
-    display: none;
+    padding: 0;
+    display: block;
   }
 
   .project-image {
-    height: 120px;
+    height: 110px;
     border-radius: 10px 10px 0 0;
   }
 

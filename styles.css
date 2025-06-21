@@ -1405,71 +1405,78 @@ a.logo:active {
 
   .project-card {
     width: 100%;
-    margin: 15px auto;
-    height: 280px;
-    perspective: 800px;
+    margin: 10px auto;
+    height: 220px;
+    perspective: 600px;
   }
 
   .project-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 0 15px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 0 10px;
   }
 
   .project-card-inner {
-    border-radius: 20px;
+    border-radius: 15px;
   }
 
   .project-glass {
-    border-radius: 15px;
-    border-top-right-radius: 40%;
+    border-radius: 10px;
+    border-top-right-radius: 30%;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(15px) saturate(120%);
+    -webkit-backdrop-filter: blur(15px) saturate(120%);
   }
 
   .project-content {
-    padding: 12px 15px 0px 15px;
+    padding: 8px 12px 0px 12px;
   }
 
   .project-image {
-    height: 120px;
+    height: 90px;
   }
 
   .project-content h3 {
-    font-size: 1.1rem;
+    display: none;
   }
 
   .project-content p {
-    font-size: 0.9rem;
+    display: none;
+  }
+
+  .project-content {
+    padding: 0;
   }
 
   .project-logo .circle1 {
-    width: 100px;
+    width: 80px;
   }
 
   .project-logo .circle2 {
-    width: 80px;
-    top: 18px;
-    right: 18px;
+    width: 65px;
+    top: 12px;
+    right: 12px;
   }
 
   .project-logo .circle3 {
-    width: 60px;
+    width: 50px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .project-logo .circle4 {
+    width: 35px;
     top: 28px;
     right: 28px;
   }
 
-  .project-logo .circle4 {
-    width: 40px;
-    top: 38px;
-    right: 38px;
-  }
-
   .project-logo .circle4 .project-icon {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .project-bottom {
-    padding: 15px 20px;
+    padding: 10px 15px;
   }
 
   .project-tech {
@@ -1654,16 +1661,17 @@ a.logo:active {
   }
 
   .project-card {
-    height: 260px;
+    height: 200px;
     perspective: 700px;
   }
 
   .project-content {
-    padding: 10px 12px 0px 12px;
+    display: none;
   }
 
   .project-image {
-    height: 100px;
+    height: 120px;
+    border-radius: 10px 10px 0 0;
   }
 
   .project-logo .circle1 {
@@ -1694,18 +1702,28 @@ a.logo:active {
   }
 
   .project-bottom {
-    padding: 10px 15px;
+    padding: 15px;
+    justify-content: center;
+    margin-top: auto;
+  }
+
+  .project-tech {
+    display: none;
   }
 
   .project-tech span {
-    font-size: 0.7rem;
-    padding: 2px 5px;
+    display: none;
   }
 
   .project-link {
-    width: 32px;
-    height: 32px;
-    font-size: 0.9rem;
+    width: 40px;
+    height: 40px;
+    font-size: 1.1rem;
+  }
+
+  .project-links {
+    gap: 15px;
+    justify-content: center;
   }
 
   .project-grid {

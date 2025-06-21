@@ -1673,6 +1673,14 @@ a.logo:active {
     display: block;
   }
 
+  .project-content h3 {
+    font-size: 0.95rem;
+    margin-bottom: 0;
+    padding: 6px 10px 4px 10px;
+    text-align: center;
+    display: block;
+  }
+
   .project-image {
     height: 110px;
     border-radius: 10px 10px 0 0;

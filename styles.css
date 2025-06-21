@@ -1632,6 +1632,31 @@ a.logo:active {
     margin-top: 8px;
   }
 
+  /* Force project names to be visible on mobile */
+  .project-content {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .project-content h3 {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    color: white !important;
+    font-size: 0.9rem !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    padding: 8px 10px !important;
+    margin: 0 !important;
+    background: rgba(0, 0, 0, 0.3) !important;
+    border-radius: 0 !important;
+    z-index: 10 !important;
+    position: relative !important;
+  }
+
   .about-text p {
     font-size: 0.85rem;
   }
@@ -1660,7 +1685,13 @@ a.logo:active {
   }
 
   .project-content h3 {
-    font-size: 1rem;
+    font-size: 0.95rem !important;
+    margin-bottom: 0 !important;
+    padding: 6px 10px 4px 10px !important;
+    text-align: center !important;
+    display: block !important;
+    color: var(--white) !important;
+    font-weight: 600 !important;
   }
 
   .project-card {
@@ -1669,16 +1700,8 @@ a.logo:active {
   }
 
   .project-content {
-    padding: 0;
-    display: block;
-  }
-
-  .project-content h3 {
-    font-size: 0.95rem;
-    margin-bottom: 0;
-    padding: 6px 10px 4px 10px;
-    text-align: center;
-    display: block;
+    padding: 0 !important;
+    display: block !important;
   }
 
   .project-image {

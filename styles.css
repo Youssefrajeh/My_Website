@@ -2136,7 +2136,6 @@ section {
   display: block;
   opacity: 0.7;
   object-fit: cover;
-  vertical-align: middle;
 }
 
 /* iPhone 12 Pro Max and similar large mobile devices */

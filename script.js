@@ -1095,17 +1095,19 @@ class VisitorTracker {
             font-family: 'Courier New', monospace;
         `;
 
-        modal.innerHTML = `
-            <div style="
-                background: #1a1a1a;
-                padding: 30px;
-                border-radius: 10px;
-                border: 2px solid #f05a28;
-                color: white;
-                text-align: center;
-                min-width: 350px;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            ">
+                 modal.innerHTML = `
+             <div style="
+                 background: #1a1a1a;
+                 padding: 25px;
+                 border-radius: 10px;
+                 border: 2px solid #f05a28;
+                 color: white;
+                 text-align: center;
+                 width: 90%;
+                 max-width: 400px;
+                 min-width: 300px;
+                 box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+             ">
                 <h2 style="margin: 0 0 20px 0; color: #f05a28;">🔐 Admin Access</h2>
                 <div style="margin-bottom: 15px;">
                     <input type="text" id="admin-username" placeholder="Username" style="
@@ -1240,154 +1242,168 @@ class VisitorTracker {
         const allData = this.getAllData();
         const sessionData = JSON.parse(localStorage.getItem('admin_session') || '{}');
         
-        // Create full dashboard page
-        document.body.innerHTML = `
-            <div style="
-                font-family: 'Courier New', monospace;
-                background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
-                color: white;
-                min-height: 100vh;
-                padding: 20px;
-                margin: 0;
-            ">
+                 // Create full dashboard page
+         document.body.innerHTML = `
+             <div style="
+                 font-family: 'Courier New', monospace;
+                 background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+                 color: white;
+                 min-height: 100vh;
+                 padding: 10px;
+                 margin: 0;
+                 box-sizing: border-box;
+             ">
+             <meta name="viewport" content="width=device-width, initial-scale=1.0">
                 <div style="max-width: 1200px; margin: 0 auto;">
-                    <!-- Header -->
-                    <div style="
-                        display: flex;
-                        justify-content: space-between;
-                        align-items: center;
-                        margin-bottom: 30px;
-                        padding: 20px;
-                        background: #333;
-                        border-radius: 10px;
-                        border: 2px solid #f05a28;
-                    ">
+                                         <!-- Header -->
+                     <div style="
+                         display: flex;
+                         justify-content: space-between;
+                         align-items: center;
+                         margin-bottom: 20px;
+                         padding: 15px;
+                         background: #333;
+                         border-radius: 10px;
+                         border: 2px solid #f05a28;
+                         flex-wrap: wrap;
+                         gap: 10px;
+                     ">
                         <div>
                             <h1 style="margin: 0; color: #f05a28;">🔐 Admin Dashboard</h1>
                             <p style="margin: 5px 0 0 0; color: #888;">Welcome back, ${sessionData.username || 'Admin'}</p>
                         </div>
-                        <div>
-                            <button onclick="window.visitorTracker.returnToWebsite()" style="
-                                background: #666;
-                                color: white;
-                                border: none;
-                                padding: 10px 15px;
-                                border-radius: 5px;
-                                cursor: pointer;
-                                margin-right: 10px;
-                            ">← Back to Website</button>
-                            <button onclick="window.visitorTracker.adminLogout()" style="
-                                background: #dc3545;
-                                color: white;
-                                border: none;
-                                padding: 10px 15px;
-                                border-radius: 5px;
-                                cursor: pointer;
-                            ">Logout</button>
+                                                 <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                             <button onclick="window.visitorTracker.returnToWebsite()" style="
+                                 background: #666;
+                                 color: white;
+                                 border: none;
+                                 padding: 8px 12px;
+                                 border-radius: 5px;
+                                 cursor: pointer;
+                                 font-size: 14px;
+                                 white-space: nowrap;
+                             ">← Back</button>
+                             <button onclick="window.visitorTracker.adminLogout()" style="
+                                 background: #dc3545;
+                                 color: white;
+                                 border: none;
+                                 padding: 8px 12px;
+                                 border-radius: 5px;
+                                 cursor: pointer;
+                                 font-size: 14px;
+                             ">Logout</button>
+                         </div>
+                    </div>
+
+                                         <!-- Stats Overview -->
+                     <div style="
+                         display: grid;
+                         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                         gap: 15px;
+                         margin-bottom: 20px;
+                     ">
+                                                 <div style="background: #333; padding: 15px; border-radius: 10px; text-align: center;">
+                             <h3 style="margin: 0 0 10px 0; color: #f05a28; font-size: 14px;">📊 Page Views</h3>
+                             <div style="font-size: 1.8em; font-weight: bold;">${stats.totalPageViews}</div>
+                         </div>
+                         <div style="background: #333; padding: 15px; border-radius: 10px; text-align: center;">
+                             <h3 style="margin: 0 0 10px 0; color: #f05a28; font-size: 14px;">👆 Total Clicks</h3>
+                             <div style="font-size: 1.8em; font-weight: bold;">${stats.totalClicks}</div>
+                         </div>
+                         <div style="background: #333; padding: 15px; border-radius: 10px; text-align: center;">
+                             <h3 style="margin: 0 0 10px 0; color: #f05a28; font-size: 14px;">⏱️ Time Spent</h3>
+                             <div style="font-size: 1.8em; font-weight: bold;">${Math.round(stats.totalTimeSpent / 60)}m</div>
+                         </div>
+                         <div style="background: #333; padding: 15px; border-radius: 10px; text-align: center;">
+                             <h3 style="margin: 0 0 10px 0; color: #f05a28; font-size: 14px;">🔄 Events</h3>
+                             <div style="font-size: 1.8em; font-weight: bold;">${stats.totalEvents}</div>
+                         </div>
+                    </div>
+
+                                         <!-- Session Information -->
+                     <div style="
+                         background: #333;
+                         padding: 15px;
+                         border-radius: 10px;
+                         margin-bottom: 20px;
+                     ">
+                         <h2 style="margin: 0 0 15px 0; color: #f05a28; font-size: 18px;">📈 Current Session</h2>
+                         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+                                                         <div style="font-size: 14px; line-height: 1.6;">
+                                 <strong>Session ID:</strong> ${stats.sessionId.substring(0, 30)}...<br>
+                                 <strong>Started:</strong> ${new Date(stats.startTime).toLocaleString()}<br>
+                                 <strong>Returning:</strong> ${stats.isReturningVisitor ? 'Yes' : 'No'}<br>
+                                 <strong>Browser:</strong> ${navigator.userAgent.split(' ')[0]}
+                             </div>
+                             <div style="font-size: 14px; line-height: 1.6;">
+                                 <strong>Language:</strong> ${navigator.language}<br>
+                                 <strong>Screen:</strong> ${screen.width}x${screen.height}<br>
+                                 <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
+                                 <strong>Platform:</strong> ${navigator.platform}
+                             </div>
                         </div>
                     </div>
 
-                    <!-- Stats Overview -->
-                    <div style="
-                        display: grid;
-                        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                        gap: 20px;
-                        margin-bottom: 30px;
-                    ">
-                        <div style="background: #333; padding: 20px; border-radius: 10px; text-align: center;">
-                            <h3 style="margin: 0 0 10px 0; color: #f05a28;">📊 Page Views</h3>
-                            <div style="font-size: 2em; font-weight: bold;">${stats.totalPageViews}</div>
-                        </div>
-                        <div style="background: #333; padding: 20px; border-radius: 10px; text-align: center;">
-                            <h3 style="margin: 0 0 10px 0; color: #f05a28;">👆 Total Clicks</h3>
-                            <div style="font-size: 2em; font-weight: bold;">${stats.totalClicks}</div>
-                        </div>
-                        <div style="background: #333; padding: 20px; border-radius: 10px; text-align: center;">
-                            <h3 style="margin: 0 0 10px 0; color: #f05a28;">⏱️ Time Spent</h3>
-                            <div style="font-size: 2em; font-weight: bold;">${Math.round(stats.totalTimeSpent / 60)}m</div>
-                        </div>
-                        <div style="background: #333; padding: 20px; border-radius: 10px; text-align: center;">
-                            <h3 style="margin: 0 0 10px 0; color: #f05a28;">🔄 Events</h3>
-                            <div style="font-size: 2em; font-weight: bold;">${stats.totalEvents}</div>
-                        </div>
-                    </div>
+                                         <!-- Visitor Data -->
+                     <div style="
+                         background: #333;
+                         padding: 15px;
+                         border-radius: 10px;
+                         margin-bottom: 20px;
+                     ">
+                         <h2 style="margin: 0 0 15px 0; color: #f05a28; font-size: 18px;">👥 Visitor Data</h2>
+                         <div style="max-height: 250px; overflow-y: auto; background: #2a2a2a; padding: 10px; border-radius: 5px;">
+                             <pre style="margin: 0; font-size: 10px; line-height: 1.3; word-wrap: break-word; white-space: pre-wrap;">${JSON.stringify(allData, null, 2)}</pre>
+                         </div>
+                     </div>
 
-                    <!-- Session Information -->
-                    <div style="
-                        background: #333;
-                        padding: 20px;
-                        border-radius: 10px;
-                        margin-bottom: 30px;
-                    ">
-                        <h2 style="margin: 0 0 15px 0; color: #f05a28;">📈 Current Session</h2>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">
-                            <div>
-                                <strong>Session ID:</strong> ${stats.sessionId}<br>
-                                <strong>Started:</strong> ${new Date(stats.startTime).toLocaleString()}<br>
-                                <strong>Returning Visitor:</strong> ${stats.isReturningVisitor ? 'Yes' : 'No'}<br>
-                                <strong>Browser:</strong> ${navigator.userAgent.split(' ')[0]}
-                            </div>
-                            <div>
-                                <strong>Language:</strong> ${navigator.language}<br>
-                                <strong>Screen Resolution:</strong> ${screen.width}x${screen.height}<br>
-                                <strong>Viewport:</strong> ${window.innerWidth}x${window.innerHeight}<br>
-                                <strong>Platform:</strong> ${navigator.platform}
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Visitor Data -->
-                    <div style="
-                        background: #333;
-                        padding: 20px;
-                        border-radius: 10px;
-                        margin-bottom: 30px;
-                    ">
-                        <h2 style="margin: 0 0 15px 0; color: #f05a28;">👥 Visitor Data</h2>
-                        <div style="max-height: 300px; overflow-y: auto; background: #2a2a2a; padding: 15px; border-radius: 5px;">
-                            <pre style="margin: 0; font-size: 12px; line-height: 1.4;">${JSON.stringify(allData, null, 2)}</pre>
-                        </div>
-                    </div>
-
-                    <!-- Actions -->
-                    <div style="
-                        background: #333;
-                        padding: 20px;
-                        border-radius: 10px;
-                        text-align: center;
-                    ">
-                        <h2 style="margin: 0 0 15px 0; color: #f05a28;">⚡ Actions</h2>
-                        <button onclick="window.visitorTracker.exportData()" style="
-                            background: #f05a28;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            margin: 5px;
-                            font-size: 14px;
-                        ">📥 Export Data</button>
-                        <button onclick="window.visitorTracker.clearData(); location.reload()" style="
-                            background: #dc3545;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            margin: 5px;
-                            font-size: 14px;
-                        ">🗑️ Clear Data</button>
-                        <button onclick="window.visitorTracker.refreshDashboard()" style="
-                            background: #28a745;
-                            color: white;
-                            border: none;
-                            padding: 12px 20px;
-                            border-radius: 5px;
-                            cursor: pointer;
-                            margin: 5px;
-                            font-size: 14px;
-                        ">🔄 Refresh</button>
-                    </div>
+                                         <!-- Actions -->
+                     <div style="
+                         background: #333;
+                         padding: 15px;
+                         border-radius: 10px;
+                         text-align: center;
+                     ">
+                         <h2 style="margin: 0 0 15px 0; color: #f05a28; font-size: 18px;">⚡ Actions</h2>
+                         <div style="display: flex; flex-wrap: wrap; gap: 8px; justify-content: center;">
+                             <button onclick="window.visitorTracker.exportData()" style="
+                                 background: #f05a28;
+                                 color: white;
+                                 border: none;
+                                 padding: 10px 15px;
+                                 border-radius: 5px;
+                                 cursor: pointer;
+                                 font-size: 13px;
+                                 flex: 1;
+                                 min-width: 120px;
+                                 max-width: 150px;
+                             ">📥 Export</button>
+                             <button onclick="window.visitorTracker.clearData(); location.reload()" style="
+                                 background: #dc3545;
+                                 color: white;
+                                 border: none;
+                                 padding: 10px 15px;
+                                 border-radius: 5px;
+                                 cursor: pointer;
+                                 font-size: 13px;
+                                 flex: 1;
+                                 min-width: 120px;
+                                 max-width: 150px;
+                             ">🗑️ Clear</button>
+                             <button onclick="window.visitorTracker.refreshDashboard()" style="
+                                 background: #28a745;
+                                 color: white;
+                                 border: none;
+                                 padding: 10px 15px;
+                                 border-radius: 5px;
+                                 cursor: pointer;
+                                 font-size: 13px;
+                                 flex: 1;
+                                 min-width: 120px;
+                                 max-width: 150px;
+                             ">🔄 Refresh</button>
+                         </div>
+                     </div>
 
                     <!-- Footer -->
                     <div style="
@@ -1621,4 +1637,36 @@ setTimeout(() => {
         createTrackingDashboard();
         console.log('📊 Admin dashboard loaded - click the button in top-right corner');
     }
-}, 3000); 
+}, 3000);
+
+// ========================================
+// MOBILE ADMIN ACCESS FUNCTION
+// ========================================
+
+// Function to trigger admin login from mobile menu
+function triggerAdminLogin() {
+    // Close mobile menu first
+    const mobileNav = document.querySelector('.mobile-nav');
+    if (mobileNav && mobileNav.classList.contains('active')) {
+        mobileNav.classList.remove('active');
+    }
+    
+    // Small delay to allow menu to close
+    setTimeout(() => {
+        if (window.visitorTracker) {
+            window.visitorTracker.showAdminLogin();
+        } else {
+            // Fallback if visitor tracker isn't ready yet
+            setTimeout(() => {
+                if (window.visitorTracker) {
+                    window.visitorTracker.showAdminLogin();
+                } else {
+                    alert('Admin system not ready. Please try again in a moment.');
+                }
+            }, 1000);
+        }
+    }, 300);
+}
+
+// Make function globally available
+window.triggerAdminLogin = triggerAdminLogin; 

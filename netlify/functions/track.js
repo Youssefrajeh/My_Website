@@ -40,22 +40,28 @@ exports.handler = async (event, context) => {
             referrer: data.referrer
         });
 
-        // Here you would typically:
-        // 1. Save to a database (Supabase, MongoDB, etc.)
-        // 2. Send to analytics service
-        // 3. Queue for processing
-        
-        // Example: Save to Supabase
-        // const { createClient } = require('@supabase/supabase-js');
-        // const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
-        // await supabase.from('visitor_tracking').insert([
-        //     {
-        //         type,
-        //         data,
-        //         timestamp: new Date().toISOString(),
-        //         ip_address: event.headers['x-forwarded-for'] || event.headers['x-nf-client-connection-ip']
-        //     }
-        // ]);
+        // Save to Supabase (Free PostgreSQL database)
+        if (process.env.SUPABASE_URL && process.env.SUPABASE_ANON_KEY) {
+            try {
+                const { createClient } = require('@supabase/supabase-js');
+                const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_ANON_KEY);
+                
+                await supabase.from('visitor_tracking').insert([
+                    {
+                        type,
+                        data: JSON.stringify(data),
+                        session_id: data.sessionId,
+                        url: data.url || data.page,
+                        timestamp: new Date().toISOString(),
+                        ip_address: event.headers['x-forwarded-for'] || event.headers['x-nf-client-connection-ip']
+                    }
+                ]);
+                
+                console.log('Data saved to Supabase successfully');
+            } catch (dbError) {
+                console.error('Failed to save to database:', dbError);
+            }
+        }
 
         return {
             statusCode: 200,

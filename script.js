@@ -879,8 +879,8 @@ class VisitorTracker {
 
     // Send data to server (replace with your backend endpoint)
     async sendToServer(data, type) {
-        // Option 1: Send to your own backend server
-        // Uncomment this section if you're running the Node.js backend
+        // Option 1: Send to your own backend server (LOCAL DEVELOPMENT ONLY)
+        // This works only when running locally - won't work on GitHub Pages
         /*
         try {
             await fetch('http://localhost:3000/api/track', {
@@ -896,8 +896,7 @@ class VisitorTracker {
         */
 
         // Option 2: Send to a serverless function (Netlify, Vercel, etc.)
-        // Uncomment this section if you're using Netlify Functions
-        /*
+        // This works with static hosting like GitHub Pages when deployed to Netlify
         try {
             await fetch('/.netlify/functions/track', {
                 method: 'POST',
@@ -909,7 +908,6 @@ class VisitorTracker {
         } catch (error) {
             console.warn('Failed to send tracking data to serverless function:', error);
         }
-        */
 
         // Option 3: Send to a third-party service (Google Analytics, etc.)
         // Uncomment if you have Google Analytics setup
